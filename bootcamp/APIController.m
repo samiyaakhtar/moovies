@@ -50,7 +50,7 @@
    
         NSDictionary *dict = responseObject;
         dictArray = [dict objectForKey:@"movies"];
-        NSLog(@"online results count: %d", [dictArray count]);
+//        NSLog(@"online results count: %d", [dictArray count]);
         handler(dictArray);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         

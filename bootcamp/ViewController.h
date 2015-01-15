@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MovieDetailsController.h"
-@interface ViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, MovieDetailsControllerDelegate>
+@interface ViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, MovieDetailsControllerDelegate, SideMenuDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-
 
 @end
 

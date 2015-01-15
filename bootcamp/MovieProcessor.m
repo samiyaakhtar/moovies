@@ -108,7 +108,7 @@
     else
     {
         NSMutableArray *moviesArray = [NSMutableArray array];
-        NSLog(@"Found %d entries", [fetchedObjs count]);
+//        NSLog(@"Found %d entries", [fetchedObjs count]);
         for (int i = 0; i < [fetchedObjs count]; i++) {
             matchedObj = [fetchedObjs objectAtIndex:i];
             NSArray* fetchedObjKeys = @[@"year",@"title",@"thumbnail_link",@"thumbnail_img",@"theater_release_date",@"synopsis",@"runtime",@"rating",@"id",@"dvd_release_date",@"critics_score",@"audience_score"];

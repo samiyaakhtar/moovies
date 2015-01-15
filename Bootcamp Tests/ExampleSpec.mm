@@ -2,7 +2,6 @@
       #import <Cedar-iOS/Cedar-iOS.h>
 #import "MovieProcessor.h"
 #import "Movie.h"
-      
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -33,7 +32,8 @@ describe(@"Specs on Bootcamp", ^{
         });
     });
     
-
+    
 });
+
 
 SPEC_END

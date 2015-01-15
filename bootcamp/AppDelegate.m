@@ -20,11 +20,14 @@
     UINavigationBar *navigationBar = [UINavigationBar appearance];
     [navigationBar setBarTintColor:[UIColor colorWithRed:51/255 green:48/255 blue:39/255 alpha:1]];
     [navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:22],
-                                            NSForegroundColorAttributeName: [UIColor whiteColor]}];
+                                                 NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [navigationBar setTintColor:[UIColor whiteColor]];
     
-//    UIBarButtonItem *barButtonItem = [UIBarButtonItem appearance];
-//    barButtonItem.tintColor = [UIColor whiteColor];
+    UISearchBar *searchBar = [UISearchBar appearance];
+    searchBar.layer.cornerRadius = 0;
+    searchBar.barTintColor =[UIColor colorWithRed:51/255 green:48/255 blue:39/255 alpha:1];
+    //    UIBarButtonItem *barButtonItem = [UIBarButtonItem appearance];
+    //    barButtonItem.tintColor = [UIColor whiteColor];
     
     
     return YES;

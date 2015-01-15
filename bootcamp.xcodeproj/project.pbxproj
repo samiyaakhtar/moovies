@@ -30,21 +30,26 @@
 		7D02AF111A66CAC000BC843F /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D02AF101A66CAC000BC843F /* Cell.xib */; };
 		7D02AF151A66CC7D00BC843F /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D02AF141A66CC7D00BC843F /* CustomCell.m */; };
 		7D0CB5571A66FEB900D9D3E6 /* MovieDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CB5561A66FEB900D9D3E6 /* MovieDetailsController.m */; };
-		7DF9FB711A6808E0008F37EB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF9FB701A6808E0008F37EB /* XCTest.framework */; };
-		7DF9FB731A6808E0008F37EB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF9FB721A6808E0008F37EB /* CoreGraphics.framework */; };
-		7DF9FB751A6808E0008F37EB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF9FB741A6808E0008F37EB /* UIKit.framework */; };
-		7DF9FB771A6808E0008F37EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF9FB761A6808E0008F37EB /* Foundation.framework */; };
-		7DF9FB7C1A6808E0008F37EB /* Bootcamp Tests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9FB7B1A6808E0008F37EB /* Bootcamp Tests-Info.plist */; };
-		7DF9FB7E1A6808E0008F37EB /* ExampleSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB7D1A6808E0008F37EB /* ExampleSpec.mm */; };
-		7DF9FB811A6808E0008F37EB /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF9FB801A6808E0008F37EB /* Cedar-iOS.framework */; };
-		7DF9FB8A1A680F08008F37EB /* MovieDetailsControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB891A680F08008F37EB /* MovieDetailsControllerSpec.mm */; };
-		7DF9FB8D1A6814E2008F37EB /* MovieSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB8C1A6814E2008F37EB /* MovieSearchViewController.m */; };
+		7D1C2EEC1A685B05005E5A6D /* burger_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D1C2EEB1A685B05005E5A6D /* burger_icon.png */; };
+		7D8B8C5F1A685C2C00CF298D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF9FB701A6808E0008F37EB /* XCTest.framework */; };
+		7D8B8C601A685C2C00CF298D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF9FB721A6808E0008F37EB /* CoreGraphics.framework */; };
+		7D8B8C611A685C2C00CF298D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF9FB741A6808E0008F37EB /* UIKit.framework */; };
+		7D8B8C621A685C2C00CF298D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF9FB761A6808E0008F37EB /* Foundation.framework */; };
+		7D8B8C671A685C2C00CF298D /* Bootcamp Tests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D8B8C661A685C2C00CF298D /* Bootcamp Tests-Info.plist */; };
+		7D8B8C691A685C2C00CF298D /* ExampleSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B8C681A685C2C00CF298D /* ExampleSpec.mm */; };
+		7D8B8C6C1A685C2D00CF298D /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8B8C6B1A685C2D00CF298D /* Cedar-iOS.framework */; };
 		7DF9FB8E1A681654008F37EB /* MovieSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB8C1A6814E2008F37EB /* MovieSearchViewController.m */; };
 		7DF9FB911A683EFB008F37EB /* MovieProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB901A683EFB008F37EB /* MovieProcessor.m */; };
+		7DF9FB941A685386008F37EB /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB931A685386008F37EB /* SideMenu.m */; };
+		7DF9FB9E1A6857E3008F37EB /* box_office.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9FB9B1A6857E3008F37EB /* box_office.png */; };
+		7DF9FB9F1A6857E3008F37EB /* coming_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9FB9C1A6857E3008F37EB /* coming_up.png */; };
+		7DF9FBA01A6857E3008F37EB /* playing_now.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9FB9D1A6857E3008F37EB /* playing_now.png */; };
+		7DF9FBA41A68583A008F37EB /* SideMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FBA31A68583A008F37EB /* SideMenuCell.m */; };
+		7DF9FBA61A685889008F37EB /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9FBA51A685889008F37EB /* SideMenuCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7DF9FB821A6808E0008F37EB /* PBXContainerItemProxy */ = {
+		7D8B8C6D1A685C2D00CF298D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7D02AEB11A66BB9200BC843F /* Project object */;
 			proxyType = 1;
@@ -98,21 +103,29 @@
 		7D0CB5541A66F64E00D9D3E6 /* Bootcamp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Bootcamp 2.xcdatamodel"; sourceTree = "<group>"; };
 		7D0CB5551A66FEB900D9D3E6 /* MovieDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailsController.h; sourceTree = "<group>"; };
 		7D0CB5561A66FEB900D9D3E6 /* MovieDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailsController.m; sourceTree = "<group>"; };
-		7DF9FB6E1A6808E0008F37EB /* Bootcamp Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bootcamp Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D1C2EEB1A685B05005E5A6D /* burger_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burger_icon.png; sourceTree = "<group>"; };
+		7D8B8C5E1A685C2C00CF298D /* Bootcamp Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bootcamp Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D8B8C651A685C2C00CF298D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D8B8C661A685C2C00CF298D /* Bootcamp Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bootcamp Tests-Info.plist"; sourceTree = "<group>"; };
+		7D8B8C681A685C2C00CF298D /* ExampleSpec.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ExampleSpec.mm; sourceTree = "<group>"; };
+		7D8B8C6A1A685C2C00CF298D /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
+		7D8B8C6B1A685C2D00CF298D /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "Frameworks/Cedar-iOS.framework"; sourceTree = "<group>"; };
 		7DF9FB701A6808E0008F37EB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7DF9FB721A6808E0008F37EB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = /System/Library/Frameworks/CoreGraphics.framework; sourceTree = "<absolute>"; };
 		7DF9FB741A6808E0008F37EB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		7DF9FB761A6808E0008F37EB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		7DF9FB7A1A6808E0008F37EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7DF9FB7B1A6808E0008F37EB /* Bootcamp Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bootcamp Tests-Info.plist"; sourceTree = "<group>"; };
-		7DF9FB7D1A6808E0008F37EB /* ExampleSpec.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ExampleSpec.mm; sourceTree = "<group>"; };
-		7DF9FB7F1A6808E0008F37EB /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
-		7DF9FB801A6808E0008F37EB /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "Frameworks/Cedar-iOS.framework"; sourceTree = "<group>"; };
-		7DF9FB891A680F08008F37EB /* MovieDetailsControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MovieDetailsControllerSpec.mm; sourceTree = "<group>"; };
 		7DF9FB8B1A6814E2008F37EB /* MovieSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieSearchViewController.h; path = ../MovieSearchViewController.h; sourceTree = "<group>"; };
 		7DF9FB8C1A6814E2008F37EB /* MovieSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieSearchViewController.m; path = ../MovieSearchViewController.m; sourceTree = "<group>"; };
 		7DF9FB8F1A683EFB008F37EB /* MovieProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieProcessor.h; path = bootcamp/MovieProcessor.h; sourceTree = SOURCE_ROOT; };
 		7DF9FB901A683EFB008F37EB /* MovieProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieProcessor.m; path = bootcamp/MovieProcessor.m; sourceTree = SOURCE_ROOT; };
+		7DF9FB921A685386008F37EB /* SideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SideMenu.h; path = ../SideMenu.h; sourceTree = "<group>"; };
+		7DF9FB931A685386008F37EB /* SideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideMenu.m; path = ../SideMenu.m; sourceTree = "<group>"; };
+		7DF9FB9B1A6857E3008F37EB /* box_office.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box_office.png; sourceTree = "<group>"; };
+		7DF9FB9C1A6857E3008F37EB /* coming_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coming_up.png; sourceTree = "<group>"; };
+		7DF9FB9D1A6857E3008F37EB /* playing_now.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playing_now.png; sourceTree = "<group>"; };
+		7DF9FBA21A68583A008F37EB /* SideMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SideMenuCell.h; path = bootcamp/SideMenuCell.h; sourceTree = SOURCE_ROOT; };
+		7DF9FBA31A68583A008F37EB /* SideMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideMenuCell.m; path = bootcamp/SideMenuCell.m; sourceTree = SOURCE_ROOT; };
+		7DF9FBA51A685889008F37EB /* SideMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SideMenuCell.xib; path = bootcamp/SideMenuCell.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,19 +136,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7DF9FB671A6808E0008F37EB /* Frameworks */ = {
+		7D8B8C571A685C2C00CF298D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DF9FB731A6808E0008F37EB /* CoreGraphics.framework in Frameworks */,
-				7DF9FB751A6808E0008F37EB /* UIKit.framework in Frameworks */,
-				7DF9FB811A6808E0008F37EB /* Cedar-iOS.framework in Frameworks */,
-				7DF9FB711A6808E0008F37EB /* XCTest.framework in Frameworks */,
-				7DF9FB771A6808E0008F37EB /* Foundation.framework in Frameworks */,
+				7D8B8C601A685C2C00CF298D /* CoreGraphics.framework in Frameworks */,
+				7D8B8C611A685C2C00CF298D /* UIKit.framework in Frameworks */,
+				7D8B8C6C1A685C2D00CF298D /* Cedar-iOS.framework in Frameworks */,
+				7D8B8C5F1A685C2C00CF298D /* XCTest.framework in Frameworks */,
+				7D8B8C621A685C2C00CF298D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7DF9FB6A1A6808E0008F37EB /* Frameworks */ = {
+		7D8B8C5A1A685C2C00CF298D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -149,7 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				7D02AEBB1A66BB9200BC843F /* Bootcamp */,
-				7DF9FB781A6808E0008F37EB /* Bootcamp Tests */,
+				7D8B8C631A685C2C00CF298D /* Bootcamp Tests */,
 				7DF9FB6F1A6808E0008F37EB /* Frameworks */,
 				7D02AEBA1A66BB9200BC843F /* Products */,
 			);
@@ -159,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				7D02AEB91A66BB9200BC843F /* Bootcamp.app */,
-				7DF9FB6E1A6808E0008F37EB /* Bootcamp Tests.xctest */,
+				7D8B8C5E1A685C2C00CF298D /* Bootcamp Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,6 +209,7 @@
 		7D02AEBC1A66BB9200BC843F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7DF9FBA11A6857E8008F37EB /* Img */,
 				7D02AEBD1A66BB9200BC843F /* Info.plist */,
 				7D02AEBE1A66BB9200BC843F /* main.m */,
 			);
@@ -237,8 +251,33 @@
 				7D02AEC91A66BB9200BC843F /* Main.storyboard */,
 				7D02AF131A66CC7D00BC843F /* CustomCell.h */,
 				7D02AF141A66CC7D00BC843F /* CustomCell.m */,
+				7DF9FBA21A68583A008F37EB /* SideMenuCell.h */,
+				7DF9FBA31A68583A008F37EB /* SideMenuCell.m */,
+				7DF9FBA51A685889008F37EB /* SideMenuCell.xib */,
+				7DF9FB921A685386008F37EB /* SideMenu.h */,
+				7DF9FB931A685386008F37EB /* SideMenu.m */,
 			);
 			name = Interface;
+			sourceTree = "<group>";
+		};
+		7D8B8C631A685C2C00CF298D /* Bootcamp Tests */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B8C661A685C2C00CF298D /* Bootcamp Tests-Info.plist */,
+				7D8B8C681A685C2C00CF298D /* ExampleSpec.mm */,
+				7D8B8C6A1A685C2C00CF298D /* Rakefile */,
+				7D8B8C6B1A685C2D00CF298D /* Cedar-iOS.framework */,
+				7D8B8C641A685C2C00CF298D /* Supporting Files */,
+			);
+			path = "Bootcamp Tests";
+			sourceTree = "<group>";
+		};
+		7D8B8C641A685C2C00CF298D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B8C651A685C2C00CF298D /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		7DF9FB6F1A6808E0008F37EB /* Frameworks */ = {
@@ -252,25 +291,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7DF9FB781A6808E0008F37EB /* Bootcamp Tests */ = {
+		7DF9FBA11A6857E8008F37EB /* Img */ = {
 			isa = PBXGroup;
 			children = (
-				7DF9FB7B1A6808E0008F37EB /* Bootcamp Tests-Info.plist */,
-				7DF9FB891A680F08008F37EB /* MovieDetailsControllerSpec.mm */,
-				7DF9FB7D1A6808E0008F37EB /* ExampleSpec.mm */,
-				7DF9FB7F1A6808E0008F37EB /* Rakefile */,
-				7DF9FB801A6808E0008F37EB /* Cedar-iOS.framework */,
-				7DF9FB791A6808E0008F37EB /* Supporting Files */,
+				7D1C2EEB1A685B05005E5A6D /* burger_icon.png */,
+				7DF9FB9B1A6857E3008F37EB /* box_office.png */,
+				7DF9FB9C1A6857E3008F37EB /* coming_up.png */,
+				7DF9FB9D1A6857E3008F37EB /* playing_now.png */,
 			);
-			path = "Bootcamp Tests";
-			sourceTree = "<group>";
-		};
-		7DF9FB791A6808E0008F37EB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				7DF9FB7A1A6808E0008F37EB /* Info.plist */,
-			);
-			name = "Supporting Files";
+			name = Img;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,26 +322,26 @@
 			productReference = 7D02AEB91A66BB9200BC843F /* Bootcamp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7DF9FB6D1A6808E0008F37EB /* Bootcamp Tests */ = {
+		7D8B8C5D1A685C2C00CF298D /* Bootcamp Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7DF9FB841A6808E0008F37EB /* Build configuration list for PBXNativeTarget "Bootcamp Tests" */;
+			buildConfigurationList = 7D8B8C6F1A685C2D00CF298D /* Build configuration list for PBXNativeTarget "Bootcamp Tests" */;
 			buildPhases = (
-				7DF9FB661A6808E0008F37EB /* Sources */,
-				7DF9FB671A6808E0008F37EB /* Frameworks */,
-				7DF9FB681A6808E0008F37EB /* Resources */,
-				7DF9FB691A6808E0008F37EB /* Sources */,
-				7DF9FB6A1A6808E0008F37EB /* Frameworks */,
-				7DF9FB6B1A6808E0008F37EB /* Resources */,
-				7DF9FB6C1A6808E0008F37EB /* Run Script */,
+				7D8B8C561A685C2C00CF298D /* Sources */,
+				7D8B8C571A685C2C00CF298D /* Frameworks */,
+				7D8B8C581A685C2C00CF298D /* Resources */,
+				7D8B8C591A685C2C00CF298D /* Sources */,
+				7D8B8C5A1A685C2C00CF298D /* Frameworks */,
+				7D8B8C5B1A685C2C00CF298D /* Resources */,
+				7D8B8C5C1A685C2C00CF298D /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7DF9FB831A6808E0008F37EB /* PBXTargetDependency */,
+				7D8B8C6E1A685C2D00CF298D /* PBXTargetDependency */,
 			);
 			name = "Bootcamp Tests";
 			productName = "Bootcamp Tests";
-			productReference = 7DF9FB6E1A6808E0008F37EB /* Bootcamp Tests.xctest */;
+			productReference = 7D8B8C5E1A685C2C00CF298D /* Bootcamp Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -327,7 +356,7 @@
 					7D02AEB81A66BB9200BC843F = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
-					7DF9FB6D1A6808E0008F37EB = {
+					7D8B8C5D1A685C2C00CF298D = {
 						CreatedOnToolsVersion = 6.1.1;
 						TestTargetID = 7D02AEB81A66BB9200BC843F;
 					};
@@ -347,7 +376,7 @@
 			projectRoot = "";
 			targets = (
 				7D02AEB81A66BB9200BC843F /* Bootcamp */,
-				7DF9FB6D1A6808E0008F37EB /* Bootcamp Tests */,
+				7D8B8C5D1A685C2C00CF298D /* Bootcamp Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -358,21 +387,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D02AECB1A66BB9200BC843F /* Main.storyboard in Resources */,
+				7DF9FBA01A6857E3008F37EB /* playing_now.png in Resources */,
 				7D02AF111A66CAC000BC843F /* Cell.xib in Resources */,
+				7DF9FBA61A685889008F37EB /* SideMenuCell.xib in Resources */,
 				7D02AED01A66BB9200BC843F /* LaunchScreen.xib in Resources */,
+				7DF9FB9E1A6857E3008F37EB /* box_office.png in Resources */,
+				7D1C2EEC1A685B05005E5A6D /* burger_icon.png in Resources */,
 				7D02AECD1A66BB9200BC843F /* Images.xcassets in Resources */,
+				7DF9FB9F1A6857E3008F37EB /* coming_up.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7DF9FB681A6808E0008F37EB /* Resources */ = {
+		7D8B8C581A685C2C00CF298D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DF9FB7C1A6808E0008F37EB /* Bootcamp Tests-Info.plist in Resources */,
+				7D8B8C671A685C2C00CF298D /* Bootcamp Tests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7DF9FB6B1A6808E0008F37EB /* Resources */ = {
+		7D8B8C5B1A685C2C00CF298D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -382,14 +416,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7DF9FB6C1A6808E0008F37EB /* Run Script */ = {
+		7D8B8C5C1A685C2C00CF298D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +443,7 @@
 				7D02AEC21A66BB9200BC843F /* AppDelegate.m in Sources */,
 				7D0CB5571A66FEB900D9D3E6 /* MovieDetailsController.m in Sources */,
 				7D02AEEB1A66BBA100BC843F /* APIController.m in Sources */,
+				7DF9FB941A685386008F37EB /* SideMenu.m in Sources */,
 				7D02AF091A66C0F800BC843F /* AFURLResponseSerialization.m in Sources */,
 				7DF9FB911A683EFB008F37EB /* MovieProcessor.m in Sources */,
 				7D02AEED1A66BBA100BC843F /* SessionVars.m in Sources */,
@@ -417,6 +451,7 @@
 				7D02AF151A66CC7D00BC843F /* CustomCell.m in Sources */,
 				7D02AF061A66C0F800BC843F /* AFSecurityPolicy.m in Sources */,
 				7D02AF021A66C0F800BC843F /* AFHTTPRequestOperation.m in Sources */,
+				7DF9FBA41A68583A008F37EB /* SideMenuCell.m in Sources */,
 				7D02AF0A1A66C0F800BC843F /* AFURLSessionManager.m in Sources */,
 				7D02AEBF1A66BB9200BC843F /* main.m in Sources */,
 				7D02AEC81A66BB9200BC843F /* ViewController.m in Sources */,
@@ -427,17 +462,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7DF9FB661A6808E0008F37EB /* Sources */ = {
+		7D8B8C561A685C2C00CF298D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DF9FB8A1A680F08008F37EB /* MovieDetailsControllerSpec.mm in Sources */,
-				7DF9FB8D1A6814E2008F37EB /* MovieSearchViewController.m in Sources */,
-				7DF9FB7E1A6808E0008F37EB /* ExampleSpec.mm in Sources */,
+				7D8B8C691A685C2C00CF298D /* ExampleSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7DF9FB691A6808E0008F37EB /* Sources */ = {
+		7D8B8C591A685C2C00CF298D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -447,10 +480,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7DF9FB831A6808E0008F37EB /* PBXTargetDependency */ = {
+		7D8B8C6E1A685C2D00CF298D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7D02AEB81A66BB9200BC843F /* Bootcamp */;
-			targetProxy = 7DF9FB821A6808E0008F37EB /* PBXContainerItemProxy */;
+			targetProxy = 7D8B8C6D1A685C2D00CF298D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -580,7 +613,7 @@
 			};
 			name = Release;
 		};
-		7DF9FB851A6808E0008F37EB /* Debug */ = {
+		7D8B8C701A685C2D00CF298D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -612,7 +645,7 @@
 			};
 			name = Debug;
 		};
-		7DF9FB861A6808E0008F37EB /* Release */ = {
+		7D8B8C711A685C2D00CF298D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -661,11 +694,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7DF9FB841A6808E0008F37EB /* Build configuration list for PBXNativeTarget "Bootcamp Tests" */ = {
+		7D8B8C6F1A685C2D00CF298D /* Build configuration list for PBXNativeTarget "Bootcamp Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7DF9FB851A6808E0008F37EB /* Debug */,
-				7DF9FB861A6808E0008F37EB /* Release */,
+				7D8B8C701A685C2D00CF298D /* Debug */,
+				7D8B8C711A685C2D00CF298D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
