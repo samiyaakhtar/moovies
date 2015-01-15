@@ -12,4 +12,6 @@
 +(void)getMovieDataWithCurrentStackNumber:(int)stackNum andCompletionHandler:(void (^)(NSArray *))completionBlock;
 +(BOOL)checkIfMovieExistsByID:(NSString *)ID;
 +(Movie *)getMovieByID:(NSString *)ID;
++(NSMutableArray *)searchMovieByNameLocally:(NSString *)name;
++(void)searchMovieOnlineWithKeyword:(NSString *)keyword completionHandler:(void(^)(NSArray *))handler;
 @end

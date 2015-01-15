@@ -38,6 +38,8 @@
 		7DF9FB7E1A6808E0008F37EB /* ExampleSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB7D1A6808E0008F37EB /* ExampleSpec.mm */; };
 		7DF9FB811A6808E0008F37EB /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF9FB801A6808E0008F37EB /* Cedar-iOS.framework */; };
 		7DF9FB8A1A680F08008F37EB /* MovieDetailsControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB891A680F08008F37EB /* MovieDetailsControllerSpec.mm */; };
+		7DF9FB8D1A6814E2008F37EB /* MovieSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB8C1A6814E2008F37EB /* MovieSearchViewController.m */; };
+		7DF9FB8E1A681654008F37EB /* MovieSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB8C1A6814E2008F37EB /* MovieSearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		7DF9FB7F1A6808E0008F37EB /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
 		7DF9FB801A6808E0008F37EB /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "Frameworks/Cedar-iOS.framework"; sourceTree = "<group>"; };
 		7DF9FB891A680F08008F37EB /* MovieDetailsControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MovieDetailsControllerSpec.mm; sourceTree = "<group>"; };
+		7DF9FB8B1A6814E2008F37EB /* MovieSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieSearchViewController.h; path = ../MovieSearchViewController.h; sourceTree = "<group>"; };
+		7DF9FB8C1A6814E2008F37EB /* MovieSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieSearchViewController.m; path = ../MovieSearchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,8 @@
 				7D02AEC11A66BB9200BC843F /* AppDelegate.m */,
 				7D02AEC61A66BB9200BC843F /* ViewController.h */,
 				7D02AEC71A66BB9200BC843F /* ViewController.m */,
+				7DF9FB8B1A6814E2008F37EB /* MovieSearchViewController.h */,
+				7DF9FB8C1A6814E2008F37EB /* MovieSearchViewController.m */,
 				7D0CB5551A66FEB900D9D3E6 /* MovieDetailsController.h */,
 				7D0CB5561A66FEB900D9D3E6 /* MovieDetailsController.m */,
 				7D02AEEE1A66C0F800BC843F /* AFNetworking */,
@@ -392,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DF9FB8E1A681654008F37EB /* MovieSearchViewController.m in Sources */,
 				7D02AF071A66C0F800BC843F /* AFURLConnectionOperation.m in Sources */,
 				7D02AEEC1A66BBA100BC843F /* Movie.m in Sources */,
 				7D02AF0F1A66C58500BC843F /* StyledNavigationController.m in Sources */,
@@ -419,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DF9FB8A1A680F08008F37EB /* MovieDetailsControllerSpec.mm in Sources */,
+				7DF9FB8D1A6814E2008F37EB /* MovieSearchViewController.m in Sources */,
 				7DF9FB7E1A6808E0008F37EB /* ExampleSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

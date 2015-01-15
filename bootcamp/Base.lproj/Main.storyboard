@@ -64,7 +64,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="yKE-ca-DQg">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="blT-7N-EgS" kind="presentation" id="KJn-75-BlJ"/>
+                                <segue destination="blT-7N-EgS" kind="show" id="9sp-lI-Fxu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -78,22 +78,92 @@
             </objects>
             <point key="canvasLocation" x="1326" y="435"/>
         </scene>
-        <!--View Controller-->
+        <!--Search-->
         <scene sceneID="uXZ-vq-IKk">
             <objects>
-                <viewController id="blT-7N-EgS" sceneMemberID="viewController">
+                <viewController id="blT-7N-EgS" customClass="MovieSearchViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jFQ-2W-Ye0"/>
                         <viewControllerLayoutGuide type="bottom" id="7H9-U6-Hxy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Iol-vZ-WtT">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Movie Title" translatesAutoresizingMaskIntoConstraints="NO" id="ZtU-f3-Buo">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="blT-7N-EgS" id="lZF-PG-bEg"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wdS-b9-kWS">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="blT-7N-EgS" id="gkV-ac-YWi"/>
+                                    <outlet property="delegate" destination="blT-7N-EgS" id="vb0-En-e4E"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wdS-b9-kWS" firstAttribute="trailing" secondItem="ZtU-f3-Buo" secondAttribute="trailing" id="7dE-Va-j6E"/>
+                            <constraint firstItem="ZtU-f3-Buo" firstAttribute="leading" secondItem="Iol-vZ-WtT" secondAttribute="leading" id="MtS-jr-rWG"/>
+                            <constraint firstItem="ZtU-f3-Buo" firstAttribute="top" secondItem="jFQ-2W-Ye0" secondAttribute="bottom" id="V1Q-MR-I87"/>
+                            <constraint firstItem="wdS-b9-kWS" firstAttribute="top" secondItem="ZtU-f3-Buo" secondAttribute="bottom" id="dJl-wN-FGB"/>
+                            <constraint firstItem="wdS-b9-kWS" firstAttribute="leading" secondItem="ZtU-f3-Buo" secondAttribute="leading" id="fhW-jO-UZ8"/>
+                            <constraint firstItem="wdS-b9-kWS" firstAttribute="bottom" secondItem="7H9-U6-Hxy" secondAttribute="top" id="ioS-ny-E6I"/>
+                            <constraint firstAttribute="trailing" secondItem="ZtU-f3-Buo" secondAttribute="trailing" id="oR9-Rr-lyx"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="ZtU-f3-Buo"/>
+                                <exclude reference="wdS-b9-kWS"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="MtS-jr-rWG"/>
+                                <exclude reference="V1Q-MR-I87"/>
+                                <exclude reference="oR9-Rr-lyx"/>
+                                <exclude reference="7dE-Va-j6E"/>
+                                <exclude reference="dJl-wN-FGB"/>
+                                <exclude reference="fhW-jO-UZ8"/>
+                                <exclude reference="ioS-ny-E6I"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="ZtU-f3-Buo"/>
+                                <include reference="wdS-b9-kWS"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="MtS-jr-rWG"/>
+                                <include reference="V1Q-MR-I87"/>
+                                <include reference="oR9-Rr-lyx"/>
+                                <include reference="7dE-Va-j6E"/>
+                                <include reference="dJl-wN-FGB"/>
+                                <include reference="fhW-jO-UZ8"/>
+                                <include reference="ioS-ny-E6I"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Search" id="bSv-Hy-bYu"/>
+                    <connections>
+                        <outlet property="searchBar" destination="ZtU-f3-Buo" id="KQ6-PN-bk3"/>
+                        <outlet property="searchResultsView" destination="wdS-b9-kWS" id="Sw8-Kq-dmZ"/>
+                        <segue destination="Zlp-Fg-iBo" kind="show" identifier="showMovieDetailsFromSearch" id="mZR-2Y-yA4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RtS-Of-HxE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="s3z-3L-uCz">
+                    <connections>
+                        <outlet property="delegate" destination="blT-7N-EgS" id="Ri9-lo-NZ6"/>
+                        <outlet property="searchContentsController" destination="blT-7N-EgS" id="shD-oJ-xnB"/>
+                        <outlet property="searchResultsDataSource" destination="blT-7N-EgS" id="S7G-Rg-oS9"/>
+                        <outlet property="searchResultsDelegate" destination="blT-7N-EgS" id="QBN-lq-bvt"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1324.5" y="1118"/>
+            <point key="canvasLocation" x="1326" y="1316"/>
         </scene>
         <!--Details-->
         <scene sceneID="h7m-W9-Fdd">
@@ -619,6 +689,7 @@
                         <outlet property="aud_score_label" destination="XRk-sP-4Tg" id="Eec-2j-5PP"/>
                         <outlet property="cast_label" destination="uWW-vO-pdi" id="kKg-wz-1YA"/>
                         <outlet property="critics_score_label" destination="TIR-BQ-X0n" id="ett-H8-Rpp"/>
+                        <outlet property="img_view" destination="QuD-kf-476" id="NSD-58-aJc"/>
                         <outlet property="mpaa_label" destination="4jo-Bp-G8d" id="Ob0-xD-kcw"/>
                         <outlet property="runtimeLabel" destination="294-OT-PU3" id="c1z-iN-Imd"/>
                         <outlet property="scrollView" destination="Wf0-B6-1SG" id="U0O-PL-RVn"/>
@@ -649,4 +720,7 @@
             <point key="canvasLocation" x="464" y="435"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="mZR-2Y-yA4"/>
+    </inferredMetricsTieBreakers>
 </document>

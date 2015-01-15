@@ -13,12 +13,6 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZE2-xh-5t3" id="kdU-fs-evr">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3t1-5f-97L">
-                        <rect key="frame" x="0.0" y="1" width="54" height="81"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="54" id="wlk-mL-p8b"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Runtime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjr-h9-ZUD">
                         <rect key="frame" x="62" y="60" width="194" height="17"/>
                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="12"/>
@@ -27,7 +21,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bdx-LY-ERP">
                         <rect key="frame" x="264" y="61" width="48" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="48" id="qoV-rn-QsR"/>
+                            <constraint firstAttribute="width" constant="48" id="sA9-q4-2na"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="12"/>
                         <nil key="highlightedColor"/>
@@ -37,21 +31,27 @@
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3t1-5f-97L">
+                        <rect key="frame" x="0.0" y="-2" width="54" height="81"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="54" id="aer-uq-juw"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="S6p-tB-dxB" firstAttribute="leading" secondItem="3t1-5f-97L" secondAttribute="trailing" constant="8" symbolic="YES" id="CFi-AO-DTM"/>
-                    <constraint firstItem="3t1-5f-97L" firstAttribute="top" secondItem="kdU-fs-evr" secondAttribute="topMargin" constant="-7" id="F7k-sT-gvt"/>
-                    <constraint firstAttribute="bottom" secondItem="Bdx-LY-ERP" secondAttribute="bottom" id="HW1-wC-kFt"/>
-                    <constraint firstItem="Bdx-LY-ERP" firstAttribute="top" secondItem="S6p-tB-dxB" secondAttribute="bottom" constant="3" id="LWX-J2-d1r"/>
-                    <constraint firstItem="S6p-tB-dxB" firstAttribute="top" secondItem="kdU-fs-evr" secondAttribute="topMargin" constant="-3" id="NCH-rg-cMM"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Vjr-h9-ZUD" secondAttribute="bottom" constant="-6" id="NnF-B3-vGL"/>
-                    <constraint firstItem="Bdx-LY-ERP" firstAttribute="trailing" secondItem="kdU-fs-evr" secondAttribute="trailingMargin" id="Tb4-rB-KtB"/>
-                    <constraint firstItem="3t1-5f-97L" firstAttribute="leading" secondItem="kdU-fs-evr" secondAttribute="leading" id="Tti-WL-zuv"/>
-                    <constraint firstItem="Bdx-LY-ERP" firstAttribute="leading" secondItem="Vjr-h9-ZUD" secondAttribute="trailing" constant="8" symbolic="YES" id="Vol-1Q-KsY"/>
-                    <constraint firstItem="S6p-tB-dxB" firstAttribute="trailing" secondItem="Bdx-LY-ERP" secondAttribute="trailing" id="X73-Nd-bhR"/>
-                    <constraint firstItem="S6p-tB-dxB" firstAttribute="leading" secondItem="Vjr-h9-ZUD" secondAttribute="leading" id="ZrV-D2-duP"/>
-                    <constraint firstItem="Vjr-h9-ZUD" firstAttribute="top" secondItem="S6p-tB-dxB" secondAttribute="bottom" constant="2" id="bRN-vR-H8T"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="3t1-5f-97L" secondAttribute="bottom" constant="-11" id="eMD-Vl-9Tc"/>
+                    <constraint firstItem="Vjr-h9-ZUD" firstAttribute="top" secondItem="S6p-tB-dxB" secondAttribute="bottom" constant="2" id="1n8-g5-ntV"/>
+                    <constraint firstItem="S6p-tB-dxB" firstAttribute="top" secondItem="kdU-fs-evr" secondAttribute="topMargin" constant="-3" id="4DH-Hy-kkc"/>
+                    <constraint firstItem="Bdx-LY-ERP" firstAttribute="trailing" secondItem="kdU-fs-evr" secondAttribute="trailingMargin" id="6Gg-lS-wFp"/>
+                    <constraint firstItem="S6p-tB-dxB" firstAttribute="leading" secondItem="3t1-5f-97L" secondAttribute="trailing" constant="8" symbolic="YES" id="Dhg-jw-ny4"/>
+                    <constraint firstItem="Bdx-LY-ERP" firstAttribute="trailing" secondItem="S6p-tB-dxB" secondAttribute="trailing" id="J1F-wL-jku"/>
+                    <constraint firstItem="3t1-5f-97L" firstAttribute="top" secondItem="kdU-fs-evr" secondAttribute="topMargin" constant="-10" id="KUl-9d-uMp"/>
+                    <constraint firstAttribute="bottom" secondItem="3t1-5f-97L" secondAttribute="bottom" id="Sp7-U7-qvk"/>
+                    <constraint firstItem="Bdx-LY-ERP" firstAttribute="top" secondItem="S6p-tB-dxB" secondAttribute="bottom" constant="3" id="gGW-TI-tu2"/>
+                    <constraint firstItem="Vjr-h9-ZUD" firstAttribute="leading" secondItem="S6p-tB-dxB" secondAttribute="leading" id="gfu-Mu-do4"/>
+                    <constraint firstItem="3t1-5f-97L" firstAttribute="bottom" secondItem="Bdx-LY-ERP" secondAttribute="bottom" id="kXi-js-cQL"/>
+                    <constraint firstItem="Bdx-LY-ERP" firstAttribute="leading" secondItem="Vjr-h9-ZUD" secondAttribute="trailing" constant="8" symbolic="YES" id="kZw-de-E9U"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Vjr-h9-ZUD" secondAttribute="bottom" constant="-6" id="sXp-xQ-kSl"/>
+                    <constraint firstItem="3t1-5f-97L" firstAttribute="leading" secondItem="kdU-fs-evr" secondAttribute="leading" id="snW-tf-BrV"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

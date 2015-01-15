@@ -48,6 +48,7 @@ typedef enum ScrollViewDirection{
                     self.moviesArray = [sessionVars getMovieArray];
                     [self.spinner stopAnimating];
                     [self.tableView reloadData];
+                    NSLog(@"SV content size updated: (%f, %f)", self.tableView.contentSize.width,self.tableView.contentSize.height);
                 }];
                 
             });
@@ -89,8 +90,7 @@ typedef enum ScrollViewDirection{
     cell.runtime.text = [NSString stringWithFormat:@"%d mins",movie.runtime];
     //    NSLog(@"Audience Score: %d",movie.audience_score);
     cell.rating.text = [NSString stringWithFormat:@"%d%%",movie.audience_score];
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: movie.thumbnails_link]]];
-    cell.thumbnail_img.image = image;
+    cell.thumbnail_img.image = movie.thumbnail;
     return cell;
     
     

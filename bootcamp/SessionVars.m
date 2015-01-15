@@ -9,6 +9,7 @@
 #import "SessionVars.h"
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
+#import "APIController.h"
 @interface SessionVars()
 @property (strong, nonatomic) NSMutableArray *arrayOfMovies;
 @end
@@ -35,31 +36,33 @@
 }
 
 - (void)addMovieToArray:(Movie *)newMovie {
-    
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSManagedObject *movieToBeAdded;
-    movieToBeAdded = [NSEntityDescription insertNewObjectForEntityForName:@"Movie" inManagedObjectContext:context];
-    [movieToBeAdded setValue: newMovie.title forKey:@"title"];
-    [movieToBeAdded setValue: newMovie.ID forKey:@"id"];
-    [movieToBeAdded setValue: [NSNumber numberWithInteger: newMovie.year ] forKey:@"year"];
-    [movieToBeAdded setValue: newMovie.rating forKey:@"rating"];
-    [movieToBeAdded setValue: [NSNumber numberWithInteger: newMovie.runtime ]  forKey:@"runtime"];
-    [movieToBeAdded setValue: newMovie.theater_release_date forKey:@"theater_release_date"];
-    [movieToBeAdded setValue: newMovie.dvd_release_date forKey:@"dvd_release_date"];
-    [movieToBeAdded setValue: [NSNumber numberWithInteger: newMovie.audience_score ]  forKey:@"audience_score"];
-    [movieToBeAdded setValue: [NSNumber numberWithInteger: newMovie.critics_score ]  forKey:@"critics_score"];
-    [movieToBeAdded setValue: newMovie.thumbnails_link forKey:@"thumbnail_link"];
-//    NSLog(@"Thumbnail URL: %@",newMovie.thumbnails_link);
-    UIImage *thumbnailImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: newMovie.thumbnails_link]]];
-    NSData *imageData = UIImageJPEGRepresentation(thumbnailImage, 0.0);
-    [movieToBeAdded setValue:imageData forKey:@"thumbnail_img"];
-    [movieToBeAdded setValue: newMovie.synopsis forKey:@"synopsis"];
-    NSLog(@"Synopsis: %@", newMovie.synopsis);
-    
     [self.arrayOfMovies addObject:newMovie];
-    NSError *error;
-    [context save:&error];
+    if (![APIController checkIfMovieExistsByID:newMovie.ID]) {
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        NSManagedObject *movieToBeAdded;
+        movieToBeAdded = [NSEntityDescription insertNewObjectForEntityForName:@"Movie" inManagedObjectContext:context];
+        [movieToBeAdded setValue: newMovie.title forKey:@"title"];
+        [movieToBeAdded setValue: newMovie.ID forKey:@"id"];
+        [movieToBeAdded setValue: [NSNumber numberWithInteger: newMovie.year ] forKey:@"year"];
+        [movieToBeAdded setValue: newMovie.rating forKey:@"rating"];
+        [movieToBeAdded setValue: [NSNumber numberWithInteger: newMovie.runtime ]  forKey:@"runtime"];
+        [movieToBeAdded setValue: newMovie.theater_release_date forKey:@"theater_release_date"];
+        [movieToBeAdded setValue: newMovie.dvd_release_date forKey:@"dvd_release_date"];
+        [movieToBeAdded setValue: [NSNumber numberWithInteger: newMovie.audience_score ]  forKey:@"audience_score"];
+        [movieToBeAdded setValue: [NSNumber numberWithInteger: newMovie.critics_score ]  forKey:@"critics_score"];
+        [movieToBeAdded setValue: newMovie.thumbnails_link forKey:@"thumbnail_link"];
+        //    NSLog(@"Thumbnail URL: %@",newMovie.thumbnails_link);
+        UIImage *thumbnailImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: newMovie.thumbnails_link]]];
+        NSData *imageData = UIImageJPEGRepresentation(thumbnailImage, 0.0);
+        [movieToBeAdded setValue:imageData forKey:@"thumbnail_img"];
+        [movieToBeAdded setValue: newMovie.synopsis forKey:@"synopsis"];
+        //    NSLog(@"Synopsis: %@", newMovie.synopsis);
+        NSError *error;
+        [context save:&error];
+    }else{
+//        NSLog(@"Movie found, not saved!");
+    }
 }
 
 - (NSArray *)getMovieArray{

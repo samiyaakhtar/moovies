@@ -55,13 +55,43 @@
     
 }
 
-+(Movie *)getMovieByID:(NSString *)ID{
++ (Movie *)getMovieByID:(NSString *)ID{
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
     NSPredicate *predicate =[NSPredicate predicateWithFormat:@"(id = %@)", ID];
+    [request setPredicate:predicate];
+    NSError *error;
+    NSArray *fetchedObjs = [context executeFetchRequest:request
+                                                  error:&error];
+    if ([fetchedObjs count] == 0)
+    {
+        NSLog(@"No matches");
+        return nil;
+    }
+    else{
+        NSLog(@"Found movie");
+        NSManagedObject *matchedObj = [fetchedObjs objectAtIndex:0];
+        NSArray* fetchedObjKeys = @[@"year",@"title",@"thumbnail_link",@"thumbnail_img",@"theater_release_date",@"synopsis",@"runtime",@"rating",@"id",@"dvd_release_date",@"critics_score",@"audience_score"];
+        NSDictionary *dict = [matchedObj committedValuesForKeys:fetchedObjKeys];
+        NSLog(@"Synopsis:::::::::::\n%@",[dict objectForKey:@"synopsis"]);
+        Movie *movie = [[Movie alloc]initWithDictionary:dict];
+        return movie;
+    }
+    
+    
+}
+
+
++(NSMutableArray *)searchMovieByNameLocally:(NSString *)keyword{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDesc];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[cd] %@)", keyword];
     [request setPredicate:predicate];
     NSManagedObject *matchedObj = nil;
     NSError *error;
@@ -74,13 +104,41 @@
     }
     else
     {
-        matchedObj = [fetchedObjs objectAtIndex:0];
-        NSArray* fetchedObjKeys = @[@"year",@"title",@"thumbnail_link",@"thumbnail_img",@"theater_release_date",@"synopsis",@"runtime",@"rating",@"id",@"dvd_release_date",@"critics_score",@"audience_score"];
-        NSDictionary *dict = [matchedObj committedValuesForKeys:fetchedObjKeys];
-        NSLog(@"%@",dict.description);
-        Movie *movie = [[Movie alloc]initWithDictionary:dict];
-        return movie;
+        NSMutableArray *moviesArray = [NSMutableArray array];
+        NSLog(@"Found %d entries", [fetchedObjs count]);
+        for (int i = 0; i < [fetchedObjs count]; i++) {
+            matchedObj = [fetchedObjs objectAtIndex:i];
+            NSArray* fetchedObjKeys = @[@"year",@"title",@"thumbnail_link",@"thumbnail_img",@"theater_release_date",@"synopsis",@"runtime",@"rating",@"id",@"dvd_release_date",@"critics_score",@"audience_score"];
+            NSDictionary *dict = [matchedObj committedValuesForKeys:fetchedObjKeys];
+//            NSLog(dict.description);
+            //            NSLog(@"Synopsis:::::::::::\n%@",[dict objectForKey:@"synopsis"]);
+            Movie *movie = [[Movie alloc]initWithCustomDict:dict];
+            [moviesArray addObject:movie];
+        }
+        return moviesArray;
     }
     
 }
+
++(void)searchMovieOnlineWithKeyword:(NSString *)keyword completionHandler:(void(^)(NSArray *))handler{
+    __block NSMutableArray *dictArray;
+    NSLog(@"Fetching movie data");
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:@"http://api.rottentomatoes.com"]];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSDictionary *params = @{@"page_limit":@"15",
+                             @"page":@"1",
+                             @"q":keyword,
+                             @"apikey":@"eagsdfzp8g3f4hfhcbjj337s"};
+    [manager GET:@"/api/public/v1.0/movies.json" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+   
+        NSDictionary *dict = responseObject;
+        dictArray = [dict objectForKey:@"movies"];
+        NSLog(@"online results count: %d", [dictArray count]);
+        handler(dictArray);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
+
 @end

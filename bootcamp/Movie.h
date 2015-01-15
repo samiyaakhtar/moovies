@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 @interface Movie : NSObject
 @property(strong, nonatomic) NSString *title;
 @property(strong, nonatomic) NSString *ID;
@@ -20,5 +20,7 @@
 @property(nonatomic) int critics_score;
 @property(strong, nonatomic) NSString *thumbnails_link;
 @property(strong, nonatomic) NSString *synopsis;
+@property(strong, nonatomic) UIImage *thumbnail;
 -(id) initWithDictionary:(NSDictionary *)dictionary;
+-(id)initWithCustomDict:(NSDictionary *)dictionary;
 @end

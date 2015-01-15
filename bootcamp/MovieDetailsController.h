@@ -29,6 +29,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *synopsis_label;
 
+@property (weak, nonatomic) IBOutlet UIImageView *img_view;
 
 @property (weak, nonatomic) id delegate;
 

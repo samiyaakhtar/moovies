@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) Movie *movie;
 
+
 @end
 
 @implementation MovieDetailsController
@@ -44,11 +45,10 @@
     self.aud_score_label.text = [NSString stringWithFormat:@"%d%%", self.movie.audience_score ];
     self.mpaa_label.text = self.movie.rating;
     self.synopsis_label.text = self.movie.synopsis;
-    
     self.synopsisHeightConstraint.constant = [self heightForSynopsis:self.movie.synopsis];
-
+    self.img_view.image = self.movie.thumbnail;
     //    [self.synopsis_label sizeToFit];
-    NSLog(@"Synopsis: %@",self.synopsis_label.text);
+//    NSLog(@"Synopsis: %@",self.synopsis_label.text);
     //    CGFloat newSVHeight = self.titleLabel.frame.size.height + 7 * self.runtimeLabel.frame.size.height + self.titleLabel.frame.size.height + self.cast_label.frame.size.height + self.synopsis_label.frame.size.height;
     //    NSLog(@"Old scrollview contentsize: (%f, %f)",self.scrollView.contentSize.width, self.scrollView.contentSize.height);
     //    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, newSVHeight);
