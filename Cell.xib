@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="cellID" selectionStyle="default" indentationWidth="10" rowHeight="80" id="ZE2-xh-5t3" customClass="CustomCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZE2-xh-5t3" id="kdU-fs-evr">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3t1-5f-97L">
+                        <rect key="frame" x="0.0" y="1" width="54" height="81"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="54" id="wlk-mL-p8b"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Runtime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjr-h9-ZUD">
+                        <rect key="frame" x="62" y="60" width="194" height="17"/>
+                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="12"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bdx-LY-ERP">
+                        <rect key="frame" x="264" y="61" width="48" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="qoV-rn-QsR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="12"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6p-tB-dxB">
+                        <rect key="frame" x="62" y="5" width="250" height="53"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="S6p-tB-dxB" firstAttribute="leading" secondItem="3t1-5f-97L" secondAttribute="trailing" constant="8" symbolic="YES" id="CFi-AO-DTM"/>
+                    <constraint firstItem="3t1-5f-97L" firstAttribute="top" secondItem="kdU-fs-evr" secondAttribute="topMargin" constant="-7" id="F7k-sT-gvt"/>
+                    <constraint firstAttribute="bottom" secondItem="Bdx-LY-ERP" secondAttribute="bottom" id="HW1-wC-kFt"/>
+                    <constraint firstItem="Bdx-LY-ERP" firstAttribute="top" secondItem="S6p-tB-dxB" secondAttribute="bottom" constant="3" id="LWX-J2-d1r"/>
+                    <constraint firstItem="S6p-tB-dxB" firstAttribute="top" secondItem="kdU-fs-evr" secondAttribute="topMargin" constant="-3" id="NCH-rg-cMM"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Vjr-h9-ZUD" secondAttribute="bottom" constant="-6" id="NnF-B3-vGL"/>
+                    <constraint firstItem="Bdx-LY-ERP" firstAttribute="trailing" secondItem="kdU-fs-evr" secondAttribute="trailingMargin" id="Tb4-rB-KtB"/>
+                    <constraint firstItem="3t1-5f-97L" firstAttribute="leading" secondItem="kdU-fs-evr" secondAttribute="leading" id="Tti-WL-zuv"/>
+                    <constraint firstItem="Bdx-LY-ERP" firstAttribute="leading" secondItem="Vjr-h9-ZUD" secondAttribute="trailing" constant="8" symbolic="YES" id="Vol-1Q-KsY"/>
+                    <constraint firstItem="S6p-tB-dxB" firstAttribute="trailing" secondItem="Bdx-LY-ERP" secondAttribute="trailing" id="X73-Nd-bhR"/>
+                    <constraint firstItem="S6p-tB-dxB" firstAttribute="leading" secondItem="Vjr-h9-ZUD" secondAttribute="leading" id="ZrV-D2-duP"/>
+                    <constraint firstItem="Vjr-h9-ZUD" firstAttribute="top" secondItem="S6p-tB-dxB" secondAttribute="bottom" constant="2" id="bRN-vR-H8T"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="3t1-5f-97L" secondAttribute="bottom" constant="-11" id="eMD-Vl-9Tc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="rating" destination="Bdx-LY-ERP" id="bun-TT-NcC"/>
+                <outlet property="runtime" destination="Vjr-h9-ZUD" id="ZBx-7e-MwN"/>
+                <outlet property="thumbnail_img" destination="3t1-5f-97L" id="jjD-GP-65B"/>
+                <outlet property="title" destination="S6p-tB-dxB" id="6Wd-N6-VoT"/>
+            </connections>
+            <point key="canvasLocation" x="472" y="440"/>
+        </tableViewCell>
+    </objects>
+</document>
