@@ -22,7 +22,7 @@
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSDictionary *params = @{@"page_limit":@"15",
-                             @"page":@"1",
+                             @"page":[NSString stringWithFormat:@"%d", stackNum],
                              @"country":@"ca",
                              @"apikey":@"eagsdfzp8g3f4hfhcbjj337s"};
     [manager GET:@"/api/public/v1.0/lists/movies/in_theaters.json" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -34,91 +34,7 @@
     }];
 }
 
-+ (BOOL)checkIfMovieExistsByID:(NSString *)ID{
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDesc];
-    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"(id = %@)", ID];
-    [request setPredicate:predicate];
-    NSError *error;
-    NSArray *fetchedObjs = [context executeFetchRequest:request
-                                                  error:&error];
-    if ([fetchedObjs count] == 0)
-    {
-        NSLog(@"No matches");
-        return NO;
-    }
-    
-    return YES;
-    
-}
 
-+ (Movie *)getMovieByID:(NSString *)ID{
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDesc];
-    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"(id = %@)", ID];
-    [request setPredicate:predicate];
-    NSError *error;
-    NSArray *fetchedObjs = [context executeFetchRequest:request
-                                                  error:&error];
-    if ([fetchedObjs count] == 0)
-    {
-        NSLog(@"No matches");
-        return nil;
-    }
-    else{
-        NSLog(@"Found movie");
-        NSManagedObject *matchedObj = [fetchedObjs objectAtIndex:0];
-        NSArray* fetchedObjKeys = @[@"year",@"title",@"thumbnail_link",@"thumbnail_img",@"theater_release_date",@"synopsis",@"runtime",@"rating",@"id",@"dvd_release_date",@"critics_score",@"audience_score"];
-        NSDictionary *dict = [matchedObj committedValuesForKeys:fetchedObjKeys];
-        NSLog(@"Synopsis:::::::::::\n%@",[dict objectForKey:@"synopsis"]);
-        Movie *movie = [[Movie alloc]initWithDictionary:dict];
-        return movie;
-    }
-    
-    
-}
-
-
-+(NSMutableArray *)searchMovieByNameLocally:(NSString *)keyword{
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDesc];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[cd] %@)", keyword];
-    [request setPredicate:predicate];
-    NSManagedObject *matchedObj = nil;
-    NSError *error;
-    NSArray *fetchedObjs = [context executeFetchRequest:request
-                                                  error:&error];
-    if ([fetchedObjs count] == 0)
-    {
-        NSLog(@"No matches");
-        return nil;
-    }
-    else
-    {
-        NSMutableArray *moviesArray = [NSMutableArray array];
-        NSLog(@"Found %d entries", [fetchedObjs count]);
-        for (int i = 0; i < [fetchedObjs count]; i++) {
-            matchedObj = [fetchedObjs objectAtIndex:i];
-            NSArray* fetchedObjKeys = @[@"year",@"title",@"thumbnail_link",@"thumbnail_img",@"theater_release_date",@"synopsis",@"runtime",@"rating",@"id",@"dvd_release_date",@"critics_score",@"audience_score"];
-            NSDictionary *dict = [matchedObj committedValuesForKeys:fetchedObjKeys];
-//            NSLog(dict.description);
-            //            NSLog(@"Synopsis:::::::::::\n%@",[dict objectForKey:@"synopsis"]);
-            Movie *movie = [[Movie alloc]initWithCustomDict:dict];
-            [moviesArray addObject:movie];
-        }
-        return moviesArray;
-    }
-    
-}
 
 +(void)searchMovieOnlineWithKeyword:(NSString *)keyword completionHandler:(void(^)(NSArray *))handler{
     __block NSMutableArray *dictArray;

@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "CustomCell.h"
 #import "Movie.h"
-#import "APIController.h"
+#import "MovieProcessor.h"
 #import "SessionVars.h"
 #import "MovieDetailsController.h"
 #import "AppDelegate.h"
@@ -19,6 +19,7 @@
 @property(strong, nonatomic) dispatch_queue_t sessionQueue;
 @property (nonatomic, assign) CGFloat lastSVContentOffset;
 @property (nonatomic) NSInteger selectedMovieNum;
+@property (nonatomic) int stacksLoaded;
 @end
 typedef enum ScrollViewDirection{
     ScrollViewDirectionUp,
@@ -29,12 +30,17 @@ typedef enum ScrollViewDirection{
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.stacksLoaded = 1;
     [self.view bringSubviewToFront:self.spinner];
     [self.spinner startAnimating];
     self.sessionQueue = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL);
+    [self loadStack:self.stacksLoaded];
+}
+
+- (void)loadStack:(int)number{
     dispatch_async(self.sessionQueue, ^{
         SessionVars *sessionVars = [SessionVars sharedInstance];
-        [APIController getMovieDataWithCurrentStackNumber:1 andCompletionHandler:^(NSArray *movieDicts) {
+        [MovieProcessor getMovieDataWithCurrentStackNumber:number + 1 andCompletionHandler:^(NSArray *movieDicts) {
             for (NSDictionary *movieDict in movieDicts) {
                 //                NSLog(@"%@",movieDict.description);
                 Movie *movie = [[Movie alloc]initWithDictionary:movieDict];
@@ -55,6 +61,7 @@ typedef enum ScrollViewDirection{
         }];
         
     });
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -108,16 +115,20 @@ typedef enum ScrollViewDirection{
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {
     ScrollViewDirection direction;
     CGFloat verticalOffset = scrollView.contentOffset.y;
+    verticalOffset += 64;
     if (self.lastSVContentOffset > verticalOffset)
         direction = ScrollViewDirectionUp;
     else{
         direction = ScrollViewDirectionDown;
     }
     self.lastSVContentOffset = verticalOffset;
-    //
-    //    if (([verticalOffset % 640] - ) && scrollView && direction == ScrollViewDirectionDown) {
-    //        APIController getMovieDataWithCurrentStackNumber:[verticalOffset intValue] / 640 andCompletionHandler:<#^(NSArray *)completionBlock#>
-    //    }
+    
+//    NSLog(@" vertical offset = %f", verticalOffset);
+    if (((int)verticalOffset % 1200 > 500) && scrollView && direction == ScrollViewDirectionDown && ((int)verticalOffset / 1200 == self.stacksLoaded - 1)) {
+        self.stacksLoaded++;
+        NSLog(@"loading stack #%d", self.stacksLoaded);
+        [self loadStack:self.stacksLoaded];
+    }
 }
 
 

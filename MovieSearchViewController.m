@@ -9,9 +9,10 @@
 #import "MovieSearchViewController.h"
 #import "CustomCell.h"
 #import "Movie.h"
-#import "APIController.h"
+#import "MovieProcessor.h"
 #import "SessionVars.h"
 #import "MovieDetailsController.h"
+
 @interface MovieSearchViewController ()
 @property (strong, nonatomic) NSMutableArray *localResults;
 @property (strong, nonatomic) NSMutableArray *onlineResults;
@@ -24,6 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.searchResultsView registerNib:[UINib nibWithNibName:@"Cell" bundle:nil] forCellReuseIdentifier:@"cellID"];
+    
     self.queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL);
     self.searchResultsView.delegate = self;
     self.searchResultsView.dataSource = self;
@@ -82,7 +86,7 @@
         NSLog(@"Searching with keyword: %@", searchString);
         NSLog(@"LOCAL: ");
         dispatch_async(self.queue, ^{
-            NSMutableArray *localResults = [APIController searchMovieByNameLocally:searchString];
+            NSMutableArray *localResults = [MovieProcessor searchMovieByNameLocally:searchString];
             if ([localResults count] > 0) {
                 [self.localResults addObjectsFromArray:localResults];
                 self.localResults = localResults;
@@ -93,7 +97,7 @@
                 
             }
             
-            [APIController searchMovieOnlineWithKeyword:searchString completionHandler:^(NSArray *movieDicts) {
+            [MovieProcessor searchMovieOnlineWithKeyword:searchString completionHandler:^(NSArray *movieDicts) {
                 for (NSDictionary *movieDict in movieDicts) {
                     Movie *movie = [[Movie alloc]initWithDictionary:movieDict];
                     [self.onlineResults addObject:movie];
@@ -116,12 +120,8 @@
 {
     //    NSLog(@"Loading cell #%d", indexPath.row);
     static NSString *cellID = @"cellID";
-    CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil)
-    {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"Cell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
+    CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+
     Movie *movie;
     if (indexPath.section == 0) {
         movie = [self.localResults objectAtIndex:indexPath.row];
@@ -138,7 +138,7 @@
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: movie.thumbnails_link]]];
     cell.thumbnail_img.image = image;
     if (movie.thumbnail != nil){
-        cell.imageView.image = movie.thumbnail;
+        cell.thumbnail_img.image = movie.thumbnail;
     }
     return cell;
 }

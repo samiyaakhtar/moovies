@@ -40,6 +40,7 @@
 		7DF9FB8A1A680F08008F37EB /* MovieDetailsControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB891A680F08008F37EB /* MovieDetailsControllerSpec.mm */; };
 		7DF9FB8D1A6814E2008F37EB /* MovieSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB8C1A6814E2008F37EB /* MovieSearchViewController.m */; };
 		7DF9FB8E1A681654008F37EB /* MovieSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB8C1A6814E2008F37EB /* MovieSearchViewController.m */; };
+		7DF9FB911A683EFB008F37EB /* MovieProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9FB901A683EFB008F37EB /* MovieProcessor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,8 @@
 		7DF9FB891A680F08008F37EB /* MovieDetailsControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MovieDetailsControllerSpec.mm; sourceTree = "<group>"; };
 		7DF9FB8B1A6814E2008F37EB /* MovieSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieSearchViewController.h; path = ../MovieSearchViewController.h; sourceTree = "<group>"; };
 		7DF9FB8C1A6814E2008F37EB /* MovieSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieSearchViewController.m; path = ../MovieSearchViewController.m; sourceTree = "<group>"; };
+		7DF9FB8F1A683EFB008F37EB /* MovieProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieProcessor.h; path = bootcamp/MovieProcessor.h; sourceTree = SOURCE_ROOT; };
+		7DF9FB901A683EFB008F37EB /* MovieProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieProcessor.m; path = bootcamp/MovieProcessor.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 				7DF9FB8C1A6814E2008F37EB /* MovieSearchViewController.m */,
 				7D0CB5551A66FEB900D9D3E6 /* MovieDetailsController.h */,
 				7D0CB5561A66FEB900D9D3E6 /* MovieDetailsController.m */,
+				7DF9FB8F1A683EFB008F37EB /* MovieProcessor.h */,
+				7DF9FB901A683EFB008F37EB /* MovieProcessor.m */,
 				7D02AEEE1A66C0F800BC843F /* AFNetworking */,
 				7D02AECC1A66BB9200BC843F /* Images.xcassets */,
 				7D02AECE1A66BB9200BC843F /* LaunchScreen.xib */,
@@ -406,6 +411,7 @@
 				7D0CB5571A66FEB900D9D3E6 /* MovieDetailsController.m in Sources */,
 				7D02AEEB1A66BBA100BC843F /* APIController.m in Sources */,
 				7D02AF091A66C0F800BC843F /* AFURLResponseSerialization.m in Sources */,
+				7DF9FB911A683EFB008F37EB /* MovieProcessor.m in Sources */,
 				7D02AEED1A66BBA100BC843F /* SessionVars.m in Sources */,
 				7D02AF081A66C0F800BC843F /* AFURLRequestSerialization.m in Sources */,
 				7D02AF151A66CC7D00BC843F /* CustomCell.m in Sources */,

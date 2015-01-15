@@ -1,6 +1,6 @@
 #import <XCTest/XCTest.h>
       #import <Cedar-iOS/Cedar-iOS.h>
-#import "APIController.h"
+#import "MovieProcessor.h"
 #import "Movie.h"
       
 
@@ -20,13 +20,13 @@ describe(@"Specs on Bootcamp", ^{
     
     describe(@"APIController getMovieByID", ^{
         it(@"should return an instance of Movie", ^{
-            [APIController getMovieByID:@"771181360"] should be_instance_of(Movie.class);
+            [MovieProcessor getMovieByID:@"771181360"] should be_instance_of(Movie.class);
         });
     });
     
     describe(@"APIController getMovieData", ^ {
         it(@"should return a NSArray of 15 entries", ^{
-            [APIController getMovieDataWithCurrentStackNumber:1 andCompletionHandler:^(NSArray *array) {
+            [MovieProcessor getMovieDataWithCurrentStackNumber:1 andCompletionHandler:^(NSArray *array) {
                 [array count] should equal(15);
             }];
             
