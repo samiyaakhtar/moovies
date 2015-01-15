@@ -23,6 +23,7 @@
 @property (strong, nonatomic) SideMenu *sideMenu;
 @property (strong, nonatomic) UIImageView *extraImgView;
 @property (readwrite, nonatomic) BOOL sideMenuIsOpen;
+@property (strong, nonatomic) UIView *transparentView;
 @end
 typedef enum ScrollViewDirection{
     ScrollViewDirectionUp,
@@ -51,9 +52,14 @@ typedef enum ScrollViewDirection{
     NSDictionary *comingUpDict = @{@"action":@"Coming Up.",@"image":comingUpImg};
     NSArray *actionDicts = @[playingNowDict, comingUpDict, boxOfficeDict];
     self.sideMenu = [[SideMenu alloc]initWithFrame:CGRectMake(-self.view.frame.size.width * 0.6, 60, self.view.frame.size.width * 0.6, self.view.frame.size.height - 30) andArrayOfDicts:actionDicts];
-//    self.sideMenu.delegate = self;
+    //    self.sideMenu.delegate = self;
     [self.view addSubview: self.sideMenu];
-    
+    self.transparentView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width * 0.6, 60, self.view.frame.size.width * 0.4, self.view.frame.size.height - 30)];
+    self.transparentView.backgroundColor = [UIColor clearColor];
+    self.transparentView.userInteractionEnabled = NO;
+    UITapGestureRecognizer *closeMenuTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toggleSideMenu)];
+    [self.transparentView addGestureRecognizer:closeMenuTap];
+    [self.view addSubview:self.transparentView];
 }
 //- (void)viewDidAppear:(BOOL)animated{
 //    [super viewDidAppear:animated];
@@ -75,27 +81,31 @@ typedef enum ScrollViewDirection{
 
 
 - (void)openMenu{
-  
-        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//            self.sideMenu.transform = CGAffineTransformMakeTranslation(self.sideMenu.frame.size.width, 0);
-            self.sideMenu.frame = CGRectMake(0, self.sideMenu.frame.origin.y, self.sideMenu.frame.size.width, self.sideMenu.frame.size.height);
-            self.tableView.frame = CGRectMake(self.sideMenu.frame.size.width, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
-        } completion:^(BOOL finished) {
-            self.sideMenuIsOpen = YES;
-        }];
-
+    
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    self.tableView.transform = CGAffineTransformMakeTranslation(self.sideMenu.frame.size.width, 0);
+                            self.sideMenu.transform = CGAffineTransformMakeTranslation(self.sideMenu.frame.size.width, 0);
+//        self.sideMenu.frame = CGRectMake(0, self.sideMenu.frame.origin.y, self.sideMenu.frame.size.width, self.sideMenu.frame.size.height);
+//        self.tableView.frame = CGRectMake(self.sideMenu.frame.size.width, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
+    } completion:^(BOOL finished) {
+        self.sideMenuIsOpen = YES;
+        self.transparentView.userInteractionEnabled = YES;
+    }];
+    
 }
 
 - (void)closeMenu{
-
-        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//                self.sideMenu.transform = CGAffineTransformMakeTranslation(-self.sideMenu.frame.size.width, 0);
-            self.sideMenu.frame = CGRectMake(-self.sideMenu.frame.size.width, self.sideMenu.frame.origin.y, self.sideMenu.frame.size.width, self.sideMenu.frame.size.height);
-                        self.tableView.frame = CGRectMake(0, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
-        } completion:^(BOOL finished) {
-            self.sideMenuIsOpen = NO;
-        }];
-
+    
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.tableView.transform = CGAffineTransformIdentity;
+                self.sideMenu.transform = CGAffineTransformIdentity;
+//        self.sideMenu.frame = CGRectMake(-self.sideMenu.frame.size.width, self.sideMenu.frame.origin.y, self.sideMenu.frame.size.width, self.sideMenu.frame.size.height);
+//        self.tableView.frame = CGRectMake(0, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
+    } completion:^(BOOL finished) {
+        self.sideMenuIsOpen = NO;
+        self.transparentView.userInteractionEnabled = NO;
+    }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{

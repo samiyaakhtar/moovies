@@ -37,11 +37,20 @@
 }
 - (void)addImgToNavBar:(UIImage *)image{
     [self.extraImgView setImage:image];
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.extraImgView.alpha = 1;
+    } completion:^(BOOL finished) {
+    }];
+    
     NSLog(@"Added extra img");
 }
 
 - (void)removeImg{
-    [self.extraImgView setImage:nil];
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.extraImgView.alpha = 0;
+    } completion:^(BOOL finished) {
+    }];
+    
 }
 
 /*
