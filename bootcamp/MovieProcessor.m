@@ -127,8 +127,8 @@
     
 }
 
-+ (void)getMovieDataWithCurrentStackNumber:(int)stackNum andCompletionHandler:(void (^)(NSArray *))completionBlock{
-    [APIController getMovieDataWithCurrentStackNumber:stackNum andCompletionHandler:completionBlock];
++ (void)getMovieDataWithCurrentStackNumber:(int)stackNum menuSelectionIndex:(NSInteger)index andCompletionHandler:(void (^)(NSArray *))completionBlock{
+    [APIController getMovieDataWithCurrentStackNumber:stackNum menuSelectionIndex:index andCompletionHandler:completionBlock];
 }
 + (void)searchMovieOnlineWithKeyword:(NSString *)keyword completionHandler:(void(^)(NSArray *))handler{
     [APIController searchMovieOnlineWithKeyword:keyword completionHandler:handler];

@@ -13,6 +13,6 @@
 + (BOOL)checkIfMovieExistsByID:(NSString *)ID;
 + (Movie *)getMovieByID:(NSString *)ID;
 + (NSMutableArray *)searchMovieByNameLocally:(NSString *)name;
-+ (void)getMovieDataWithCurrentStackNumber:(int)stackNum andCompletionHandler:(void (^)(NSArray *))completionBlock;
++ (void)getMovieDataWithCurrentStackNumber:(int)stackNum menuSelectionIndex:(NSInteger)index andCompletionHandler:(void (^)(NSArray *))completionBlock;
 + (void)searchMovieOnlineWithKeyword:(NSString *)keyword completionHandler:(void(^)(NSArray *))handler;
 @end

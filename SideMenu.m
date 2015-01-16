@@ -7,7 +7,7 @@
 //
 
 #import "SideMenu.h"
-#import "SideMenuCell.h"
+
 @interface SideMenu()
 @property(strong, nonatomic) UITableView *tableview;
 @property(strong, nonatomic) NSArray *actions;
@@ -25,11 +25,14 @@
         self.tableview.dataSource = self;
         self.tableview.delegate = self;
         [self.tableview reloadData];
+        self.selectedIndex = 0;
     }
     return self;
 }
 
-
+- (void) highlightCellAtIndexPath:(NSIndexPath *)indexPath{
+    [self.tableview selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
 
 #pragma mark UITableView
 - (SideMenuCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -53,7 +56,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSLog(@"sideMenu selected");
+    if (self.selectedIndex != indexPath.row) {
+        self.selectedIndex = indexPath.row;
+//                    NSLog(@"Calling VC to reload table");
+        if ([self.delegate respondsToSelector:@selector(sideMenuButtonClicked)]) {
+//            NSLog(@"Can call VC to reload table");
+            [self.delegate sideMenuButtonClicked];
+        }
+        
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

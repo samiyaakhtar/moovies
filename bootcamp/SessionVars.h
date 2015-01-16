@@ -13,6 +13,6 @@
 @property (nonatomic, retain) NSString *someProperty;
 
 + (id)sharedInstance;
-- (void)addMovieToArray:(Movie *)movie;
-- (NSArray *)getMovieArray;
+- (void)addMovie:(Movie *)newMovie toArrayWithOption:(NSInteger)option;
+- (NSArray *)getMovieArray:(NSInteger)option;
 @end

@@ -15,10 +15,12 @@
 #import "AppDelegate.h"
 #import "StyledNavigationController.h"
 @interface ViewController ()
-@property (strong, nonatomic) NSArray *moviesArray;
+
+@property (strong, nonatomic) NSArray *arrayToBeDisplayed;
 @property (nonatomic, assign) CGFloat lastSVContentOffset;
 @property (nonatomic) NSInteger selectedMovieNum;
-@property (nonatomic) int stacksLoaded;
+@property (nonatomic) int playingNowStacksLoaded;
+@property (nonatomic) int comingUpStacksLoaded;
 @property (strong, nonatomic) SideMenu *sideMenu;
 @property (strong, nonatomic) UIImageView *extraImgView;
 @property (readwrite, nonatomic) BOOL sideMenuIsOpen;
@@ -46,14 +48,17 @@ typedef enum ScrollViewDirection{
     self.navbar.delegate = self;
     self.navbar.searchBar.delegate = self;
     self.sideMenuIsOpen = NO;
-    self.stacksLoaded = 1;
+    self.playingNowStacksLoaded = 1;
+    self.comingUpStacksLoaded = 1;
     self.searchBarIsOpen = NO;
     self.localResults = [NSMutableArray array];
     self.onlineResults = [NSMutableArray array];
     [self.view bringSubviewToFront:self.spinner];
     [self.spinner startAnimating];
     [self.searchResultsView registerNib:[UINib nibWithNibName:@"Cell" bundle:nil] forCellReuseIdentifier:@"cellID"];
-    [self loadStack:self.stacksLoaded];
+    [self loadStack:1 forOption:0];
+    [self loadStack:1 forOption:1];
+        [self loadStack:1 forOption:2];
     UIImage *playingNowImage = [UIImage imageNamed:@"playing_now.png"];
     NSDictionary *playingNowDict = @{@"action":@"Playing Now.",@"image":playingNowImage};
     UIImage *boxOfficeImg = [UIImage imageNamed:@"box_office.png"];
@@ -62,7 +67,10 @@ typedef enum ScrollViewDirection{
     NSDictionary *comingUpDict = @{@"action":@"Coming Up.",@"image":comingUpImg};
     NSArray *actionDicts = @[playingNowDict, comingUpDict, boxOfficeDict];
     self.sideMenu = [[SideMenu alloc]initWithFrame:CGRectMake(-225, 60, 225, self.view.frame.size.height - 30) andArrayOfDicts:actionDicts];
+    self.sideMenu.delegate = self;
     [self.view addSubview: self.sideMenu];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection: 0];
+    [self.sideMenu highlightCellAtIndexPath:indexPath];
     self.transparentView = [[UIView alloc]initWithFrame:CGRectMake(225, 60, self.view.frame.size.width * 0.4, self.view.frame.size.height - 30)];
     self.transparentView.backgroundColor = [UIColor clearColor];
     self.transparentView.userInteractionEnabled = NO;
@@ -72,6 +80,17 @@ typedef enum ScrollViewDirection{
     self.searchViewHeightConstraint.constant = 0;
     self.searchBarButton.target = self;
     self.searchBarButton.action = @selector(toggleSearchBar);
+}
+
+-(int) getStacksLoaded {
+    switch(self.sideMenu.selectedIndex) {
+        case 0:
+            return self.playingNowStacksLoaded;
+        case 1:
+            return self.comingUpStacksLoaded;
+            
+    }
+    return 0;
 }
 
 - (void)openSearchView{
@@ -105,54 +124,8 @@ typedef enum ScrollViewDirection{
 }
 
 
-- (void)searchBarDidOpen{
-    self.searchBarIsOpen = YES;
-    [self openSearchView];
-}
-
-- (void)searchBarDidClose{
-    self.searchBarIsOpen = NO;
-    [self closeSearchView];
-}
-
-- (void)toggleSideMenu{
-    if (self.sideMenuIsOpen) {
-        NSLog(@"Closing menu");
-        [self.view bringSubviewToFront:self.sideMenu];
-        [self closeMenu];
-    }
-    else{
-        NSLog(@"opening menu");
-        [self.view bringSubviewToFront:self.sideMenu];
-        [self openMenu];
-    }
-}
 
 
-- (void)openMenu{
-    
-    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.tableView.transform = CGAffineTransformMakeTranslation(self.sideMenu.frame.size.width, 0);
-                self.searchResultsView.transform = CGAffineTransformMakeTranslation(self.sideMenu.frame.size.width, 0);
-        self.sideMenu.transform = CGAffineTransformMakeTranslation(self.sideMenu.frame.size.width, 0);
-    } completion:^(BOOL finished) {
-        self.sideMenuIsOpen = YES;
-        self.transparentView.userInteractionEnabled = YES;
-    }];
-    
-}
-
-- (void)closeMenu{
-    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.tableView.transform = CGAffineTransformIdentity;
-                self.searchResultsView.transform = CGAffineTransformIdentity;
-        self.sideMenu.transform = CGAffineTransformIdentity;
-    } completion:^(BOOL finished) {
-        self.sideMenuIsOpen = NO;
-        self.transparentView.userInteractionEnabled = NO;
-    }];
-    
-}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -166,18 +139,19 @@ typedef enum ScrollViewDirection{
     [self.navbar closeSearchBar];
 }
 
-- (void)loadStack:(int)number{
+- (void)loadStack:(int)number forOption:(NSInteger)option{
     
     SessionVars *sessionVars = [SessionVars sharedInstance];
-    [MovieProcessor getMovieDataWithCurrentStackNumber:number + 1 andCompletionHandler:^(NSArray *movieDicts) {
+    [MovieProcessor getMovieDataWithCurrentStackNumber:number + 1 menuSelectionIndex:option andCompletionHandler:^(NSArray *movieDicts) {
         for (NSDictionary *movieDict in movieDicts) {
             Movie *movie = [[Movie alloc]initWithDictionary:movieDict];
-            [sessionVars addMovieToArray:movie];
+            [sessionVars addMovie:movie toArrayWithOption:option];
         }
+        
         [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             self.spinner.alpha = 0;
         } completion:^(BOOL finished) {
-            self.moviesArray = [sessionVars getMovieArray];
+            self.arrayToBeDisplayed =[sessionVars getMovieArray:self.sideMenu.selectedIndex];
             [self.spinner stopAnimating];
             [self.tableView reloadData];
             NSLog(@"SV content size updated: (%f, %f)", self.tableView.contentSize.width,self.tableView.contentSize.height);
@@ -190,7 +164,6 @@ typedef enum ScrollViewDirection{
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    NSLog(@"View did appear");
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -202,7 +175,7 @@ typedef enum ScrollViewDirection{
         Movie *movie;
         UITableView *tableview = [dict objectForKey:@"tableView"];
         if (tableview == self.tableView) {
-            movie = [self.moviesArray objectAtIndex:[[dict objectForKey:@"row"] integerValue]];
+            movie = [self.arrayToBeDisplayed objectAtIndex:[[dict objectForKey:@"row"] integerValue]];
         }
         else{
             NSInteger section = [[dict objectForKey:@"section"] integerValue];
@@ -222,7 +195,8 @@ typedef enum ScrollViewDirection{
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.tableView){
-        return self.moviesArray.count;
+        return self.arrayToBeDisplayed.count;
+        
     }
     else{
         if (section==0)
@@ -245,18 +219,20 @@ typedef enum ScrollViewDirection{
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"Cell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-        Movie *movie = [self.moviesArray objectAtIndex:indexPath.row];
+        Movie *movie;
+        movie = [self.arrayToBeDisplayed objectAtIndex:indexPath.row];
         cell.title.text = movie.title;
         cell.runtime.text = [NSString stringWithFormat:@"%d mins",movie.runtime];
         cell.rating.text = [NSString stringWithFormat:@"%d%%",movie.audience_score];
         cell.thumbnail_img.image = movie.thumbnail;
+        
+        
         return cell;
     }
     else if(tableView == self.searchResultsView){
         static NSString *cellID = @"cellID";
         CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
         Movie *movie;
-        NSLog(self.localResults.description);
         if (indexPath.section == 0) {
             movie = [self.localResults objectAtIndex:indexPath.row];
         }
@@ -309,7 +285,7 @@ typedef enum ScrollViewDirection{
 
 
 
-#pragma mark UIScrollView
+#pragma mark ScrollView
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {
     ScrollViewDirection direction;
     CGFloat verticalOffset = scrollView.contentOffset.y;
@@ -321,25 +297,42 @@ typedef enum ScrollViewDirection{
     }
     self.lastSVContentOffset = verticalOffset;
     
-    //    NSLog(@" vertical offset = %f", verticalOffset);
     CGFloat threshold = 500;
     if ( [(NSString*)[UIDevice currentDevice].model hasPrefix:@"iPad"] ) {
         threshold = 200;
     }
     if (scrollView == self.tableView) {
-        if (((int)verticalOffset % 1200 > threshold) && scrollView && direction == ScrollViewDirectionDown && ((int)verticalOffset / 1200 == self.stacksLoaded - 1)) {
-            self.stacksLoaded++;
-            NSLog(@"loading stack #%d", self.stacksLoaded);
-            [self loadStack:self.stacksLoaded];
+        if (((int)verticalOffset % 1200 > threshold) && scrollView && direction == ScrollViewDirectionDown && ((int)verticalOffset / 1200 == [self getStacksLoaded] - 1)) {
+            switch(self.sideMenu.selectedIndex) {
+                case 0:
+                    self.playingNowStacksLoaded++;
+                case 1:
+                    self.comingUpStacksLoaded++;
+            }
+            [self loadStack:[self getStacksLoaded] forOption:self.sideMenu.selectedIndex];
         }
     }
     
 }
 
 
-#pragma mark UISearchBar
+#pragma mark SearchBar
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [self.navbar.searchBar resignFirstResponder];
+    [self search];
+}
+
+- (void)searchBarDidOpen{
+    self.searchBarIsOpen = YES;
+    [self openSearchView];
+}
+
+- (void)searchBarDidClose{
+    self.searchBarIsOpen = NO;
+    [self closeSearchView];
+}
+
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    NSLog(@"did begin editing");
     [self.searchTimer invalidate];
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
@@ -357,8 +350,8 @@ typedef enum ScrollViewDirection{
     NSString *searchString = self.navbar.searchBar.text;
     if (![searchString isEqualToString:@""]) {
         [self.searchTimer invalidate];
-        NSLog(@"Searching with keyword: %@", searchString);
-        NSLog(@"LOCAL: ");
+//        NSLog(@"Searching with keyword: %@", searchString);
+//        NSLog(@"LOCAL: ");
         //        dispatch_async(self.queue, ^{
         NSMutableArray *localResults = [MovieProcessor searchMovieByNameLocally:searchString];
         if ([localResults count] > 0) {
@@ -385,11 +378,51 @@ typedef enum ScrollViewDirection{
         //        });
     }
 }
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    [self.navbar.searchBar resignFirstResponder];
-    [self search];
+#pragma Mark SideMenu
+
+
+- (void)sideMenuButtonClicked{
+    NSLog(@"Need to reload table with option #%ld", self.sideMenu.selectedIndex);
+    self.arrayToBeDisplayed = [[SessionVars sharedInstance]getMovieArray:self.sideMenu.selectedIndex];
+    [self.tableView reloadData];
 }
 
 
+- (void)toggleSideMenu{
+    if (self.sideMenuIsOpen) {
+        NSLog(@"Closing menu");
+        [self.view bringSubviewToFront:self.sideMenu];
+        [self closeMenu];
+    }
+    else{
+        NSLog(@"opening menu");
+        [self.view bringSubviewToFront:self.sideMenu];
+        [self openMenu];
+    }
+}
 
+
+- (void)openMenu{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.tableView.transform = CGAffineTransformMakeTranslation(self.sideMenu.frame.size.width, 0);
+        self.searchResultsView.transform = CGAffineTransformMakeTranslation(self.sideMenu.frame.size.width, 0);
+        self.sideMenu.transform = CGAffineTransformMakeTranslation(self.sideMenu.frame.size.width, 0);
+    } completion:^(BOOL finished) {
+        self.sideMenuIsOpen = YES;
+        self.transparentView.userInteractionEnabled = YES;
+    }];
+    
+}
+
+- (void)closeMenu{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.tableView.transform = CGAffineTransformIdentity;
+        self.searchResultsView.transform = CGAffineTransformIdentity;
+        self.sideMenu.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        self.sideMenuIsOpen = NO;
+        self.transparentView.userInteractionEnabled = NO;
+    }];
+    
+}
 @end

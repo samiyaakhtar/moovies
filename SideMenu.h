@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SideMenuCell.h"
 @protocol SideMenuDelegate
-- (void)sideMenuDidOpen;
-- (void)sideMenuDidClose;
+//- (void)sideMenuDidOpen;
+//- (void)sideMenuDidClose;
+- (void)sideMenuButtonClicked;
 @end
 @interface SideMenu : UIView<UITableViewDataSource, UITableViewDelegate>
 @property(weak, nonatomic) id delegate;
+@property(nonatomic) NSInteger selectedIndex;
 - (id)initWithFrame:(CGRect)frame andArrayOfDicts:(NSArray *)array;
-
+- (void) highlightCellAtIndexPath:(NSIndexPath *)indexPath;
 @end

@@ -25,7 +25,7 @@ describe(@"Specs on Bootcamp", ^{
     
     describe(@"APIController getMovieData", ^ {
         it(@"should return a NSArray of 15 entries", ^{
-            [MovieProcessor getMovieDataWithCurrentStackNumber:1 andCompletionHandler:^(NSArray *array) {
+            [MovieProcessor getMovieDataWithCurrentStackNumber:1 menuSelectionIndex:0 andCompletionHandler:^(NSArray *array) {
                 [array count] should equal(15);
             }];
             

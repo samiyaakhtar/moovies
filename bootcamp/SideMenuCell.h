@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface SideMenuCell : UITableViewCell
 //@property (weak, nonatomic) IBOutlet UIImageView *iconImgView;
 @property (weak, nonatomic) IBOutlet UILabel *action;

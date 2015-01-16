@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Movie.h"
 @interface APIController : NSObject
-+(void)getMovieDataWithCurrentStackNumber:(int)stackNum andCompletionHandler:(void (^)(NSArray *))completionBlock;
++(void)getMovieDataWithCurrentStackNumber:(int)stackNum menuSelectionIndex:(NSInteger)menuSelectionIndex andCompletionHandler:(void (^)(NSArray *))completionBlock;
 
 +(void)searchMovieOnlineWithKeyword:(NSString *)keyword completionHandler:(void(^)(NSArray *))handler;
 @end

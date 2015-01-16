@@ -115,5 +115,5 @@ end
 
 desc "Run Bootcamp_Tests OCUnit application specs"
 task :Bootcamp_Tests => :build_Bootcamp_Tests do
-  CedarTargetBootcamp_Tests.system_or_exit "cd #{CedarTargetBootcamp_Tests::PROJECT_ROOT} && xcodebuild test -scheme Bootcamp -configuration #{CedarTargetBootcamp_Tests::CONFIGURATION} -destination '#{CedarTargetBootcamp_Tests.destination_for_ios_sdk(CedarTargetBootcamp_Tests.deployment_target_sdk_version)}' ARCHS=i386 SYMROOT='#{CedarTargetBootcamp_Tests::BUILD_DIR}' | tee /dev/stderr | grep -q 'with 0 failures'"
+  CedarTargetBootcamp_Tests.system_or_exit "cd #{CedarTargetBootcamp_Tests::PROJECT_ROOT} && xcodebuild test -scheme BootCamp -configuration #{CedarTargetBootcamp_Tests::CONFIGURATION} -destination '#{CedarTargetBootcamp_Tests.destination_for_ios_sdk(CedarTargetBootcamp_Tests.deployment_target_sdk_version)}' ARCHS=i386 SYMROOT='#{CedarTargetBootcamp_Tests::BUILD_DIR}' | tee /dev/stderr | grep -q 'with 0 failures'"
 end
