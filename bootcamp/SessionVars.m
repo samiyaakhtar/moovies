@@ -27,7 +27,7 @@
 - (id)init {
     if (self = [super init]) {
         self.arrayOfMovies = [[NSMutableArray alloc]init];
-
+        
     }
     return self;
 }
@@ -38,11 +38,11 @@
 
 - (void)addMovieToArray:(Movie *)newMovie {
     [self.arrayOfMovies addObject:newMovie];
-//    dispatch_async(dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL), ^{
-        if (![MovieProcessor checkIfMovieExistsByID:newMovie.ID]) {
-            [MovieProcessor saveMovie:newMovie];
-        }
-//    });
+    if (![MovieProcessor checkIfMovieExistsByID:newMovie.ID]) {
+        [MovieProcessor saveMovie:newMovie];
+    }else{
+        NSLog(@"No need to save movie: %@",newMovie.title);
+    }
     
 }
 

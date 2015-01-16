@@ -66,10 +66,6 @@
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     [self.searchTimer invalidate];
-//    [self.localResults removeAllObjects];
-//    [self.onlineResults removeAllObjects];
-//    NSLog(@"editing did end, removing everything");
-//    [self.searchResultsView reloadData];
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     [self.searchTimer invalidate];
@@ -85,29 +81,33 @@
         [self.searchTimer invalidate];
         NSLog(@"Searching with keyword: %@", searchString);
         NSLog(@"LOCAL: ");
-//        dispatch_async(self.queue, ^{
+        dispatch_async(dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL), ^{
             NSMutableArray *localResults = [MovieProcessor searchMovieByNameLocally:searchString];
+            NSLog(@"DESCRIPTION: %@",localResults.description);
             if ([localResults count] > 0) {
                 [self.localResults addObjectsFromArray:localResults];
                 self.localResults = localResults;
-                NSLog(@"search results count: %lu",(unsigned long)[self.localResults count]);
-//                dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"local search results count: %lu",(unsigned long)[self.localResults count]);
+                dispatch_async(dispatch_get_main_queue(), ^{
                     [self.searchResultsView reloadData];
-//                });
+                });
                 
             }
+        });
+        
+        [MovieProcessor searchMovieOnlineWithKeyword:searchString completionHandler:^(NSArray *movieDicts) {
             
-            [MovieProcessor searchMovieOnlineWithKeyword:searchString completionHandler:^(NSArray *movieDicts) {
-                for (NSDictionary *movieDict in movieDicts) {
-                    Movie *movie = [[Movie alloc]initWithDictionary:movieDict];
-                    [self.onlineResults addObject:movie];
-                }
-//                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.searchResultsView reloadData];
-//                });
-                
-            }];
-//        });
+            for (NSDictionary *movieDict in movieDicts) {
+                Movie *movie = [[Movie alloc]initWithDictionary:movieDict];
+                [self.onlineResults addObject:movie];
+            }
+            NSLog(@"online search results count: %lu",(unsigned long)[self.onlineResults count]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.searchResultsView reloadData];
+            });
+            
+        }];
+        //        });
     }
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
@@ -121,7 +121,7 @@
     //    NSLog(@"Loading cell #%d", indexPath.row);
     static NSString *cellID = @"cellID";
     CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-
+    
     Movie *movie;
     if (indexPath.section == 0) {
         movie = [self.localResults objectAtIndex:indexPath.row];

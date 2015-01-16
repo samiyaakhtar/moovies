@@ -11,12 +11,7 @@
 @interface MovieDetailsController ()
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *synopsisHeightConstraint;
-
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *synopsisWidthConstraint;
-
-
-
 @property (nonatomic, strong) Movie *movie;
 
 
@@ -60,23 +55,24 @@
     else{
         self.synopsisWidthConstraint.constant = self.view.frame.size.width - 20;
     }
-    
+
     self.img_view.image = self.movie.thumbnail;
+    
     //Get casts
 }
 
 - (CGFloat)heightForSynopsis:(NSString *)synopsis {
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:19.0f]};
     
-    CGRect boundingRect = [synopsis boundingRectWithSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 4000)
+    CGRect boundingRect = [synopsis boundingRectWithSize:CGSizeMake(self.synopsis_label.frame.size.width, 4000)
                                                  options:NSStringDrawingUsesLineFragmentOrigin
                                               attributes:attributes
                                                  context:nil];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        boundingRect.size.height -= 40;
+//        boundingRect.size.height -= 40;
     }
     else{
-//        boundingRect.size.height -= 100;
+//        boundingRect.size.height -= 80;
     }
     
     return boundingRect.size.height;

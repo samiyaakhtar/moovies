@@ -18,6 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     UINavigationBar *navigationBar = [UINavigationBar appearance];
+    [navigationBar setBackgroundColor:[UIColor colorWithRed:51/255 green:48/255 blue:39/255 alpha:1]];
     [navigationBar setBarTintColor:[UIColor colorWithRed:51/255 green:48/255 blue:39/255 alpha:1]];
     [navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:22],
                                                  NSForegroundColorAttributeName: [UIColor whiteColor]}];
@@ -26,6 +27,9 @@
     UISearchBar *searchBar = [UISearchBar appearance];
     searchBar.layer.cornerRadius = 0;
     searchBar.barTintColor =[UIColor colorWithRed:51/255 green:48/255 blue:39/255 alpha:1];
+    searchBar.tintColor = [UIColor colorWithRed:51/255 green:48/255 blue:39/255 alpha:1];
+    searchBar.backgroundColor = [UIColor colorWithRed:51/255 green:48/255 blue:39/255 alpha:1];
+    searchBar.placeholder = @"Movie Title Here.";
     //    UIBarButtonItem *barButtonItem = [UIBarButtonItem appearance];
     //    barButtonItem.tintColor = [UIColor whiteColor];
     

@@ -10,6 +10,7 @@
 
 @interface StyledNavigationController ()
 @property (strong, nonatomic) UIImageView *extraImgView;
+
 @end
 
 @implementation StyledNavigationController
@@ -24,9 +25,11 @@
     self.extraImgView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hamburgerTapped:)];
     [self.extraImgView addGestureRecognizer:tap];
-    
-    [self.navigationBar addSubview:self.extraImgView];
 
+    [self.navigationBar addSubview:self.extraImgView];
+    self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(90, 25, self.view.frame.size.width - 120, 30)];
+    [self.view addSubview:self.searchBar];
+    self.searchBar.alpha = 0;
     //    self.view.backgroundColor = [UIColor colorWithRed:51/255 green:48/255 blue:39/255 alpha:1];
 }
 
@@ -50,6 +53,30 @@
     } completion:^(BOOL finished) {
     }];
     
+}
+
+- (void)openSearchBar{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.searchBar.alpha = 1;
+        self.searchBar.transform = CGAffineTransformMakeTranslation(-30, 0);
+    } completion:^(BOOL finished) {
+        if ([self.delegate respondsToSelector:@selector(searchBarDidOpen)]) {
+            [self.delegate searchBarDidOpen];
+        }
+    }];
+    
+}
+
+- (void)closeSearchBar{
+    [self.searchBar resignFirstResponder];
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.searchBar.alpha = 0;
+        self.searchBar.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        if ([self.delegate respondsToSelector:@selector(searchBarDidClose)]) {
+            [self.delegate searchBarDidClose];
+        }
+    }];
 }
 
 /*

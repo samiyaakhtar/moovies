@@ -35,7 +35,7 @@
     //    NSLog(@"Synopsis: %@", newMovie.synopsis);
     NSError *error;
     [context save:&error];
-    
+    NSLog(@"\"%@ saved.\"", movieToBeSaved.title);
     
     
 }
@@ -81,7 +81,7 @@
         NSManagedObject *matchedObj = [fetchedObjs objectAtIndex:0];
         NSArray* fetchedObjKeys = @[@"year",@"title",@"thumbnail_link",@"thumbnail_img",@"theater_release_date",@"synopsis",@"runtime",@"rating",@"id",@"dvd_release_date",@"critics_score",@"audience_score"];
         NSDictionary *dict = [matchedObj committedValuesForKeys:fetchedObjKeys];
-        NSLog(@"Synopsis:::::::::::\n%@",[dict objectForKey:@"synopsis"]);
+//        NSLog(@"Synopsis:::::::::::\n%@",[dict objectForKey:@"synopsis"]);
         movie = [[Movie alloc]initWithDictionary:dict];
         
     }
@@ -91,8 +91,6 @@
 
 
 +(NSMutableArray *)searchMovieByNameLocally:(NSString *)keyword{
-    NSMutableArray *moviesArray = nil;
-    
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:context];
@@ -107,10 +105,11 @@
     if ([fetchedObjs count] == 0)
     {
         NSLog(@"No matches");
+        return nil;
     }
     else
     {
-        moviesArray = [NSMutableArray array];
+        NSLog(@"FOUND MOVIE MATCHING %@",keyword);
         NSMutableArray *moviesArray = [NSMutableArray array];
         //        NSLog(@"Found %d entries", [fetchedObjs count]);
         for (int i = 0; i < [fetchedObjs count]; i++) {
@@ -123,9 +122,9 @@
             [moviesArray addObject:movie];
         }
         
+        return moviesArray;
     }
     
-    return moviesArray;
 }
 
 + (void)getMovieDataWithCurrentStackNumber:(int)stackNum andCompletionHandler:(void (^)(NSArray *))completionBlock{

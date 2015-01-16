@@ -6,11 +6,13 @@
 //  Copyright (c) 2015 DX209. All rights reserved.
 //
 
+
+
+// segue identifier: ShowMovieDetails
 #import <UIKit/UIKit.h>
 
-@interface MovieSearchViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate>
+@interface MovieSearchViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
 @property (weak, nonatomic) IBOutlet UITableView *searchResultsView;
 
 @end
