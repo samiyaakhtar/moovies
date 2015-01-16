@@ -21,6 +21,7 @@
 @property (nonatomic) NSInteger selectedMovieNum;
 @property (nonatomic) int playingNowStacksLoaded;
 @property (nonatomic) int comingUpStacksLoaded;
+@property (nonatomic) int boxOfficeStacksLoaded;
 @property (strong, nonatomic) SideMenu *sideMenu;
 @property (strong, nonatomic) UIImageView *extraImgView;
 @property (readwrite, nonatomic) BOOL sideMenuIsOpen;
@@ -50,6 +51,7 @@ typedef enum ScrollViewDirection{
     self.sideMenuIsOpen = NO;
     self.playingNowStacksLoaded = 1;
     self.comingUpStacksLoaded = 1;
+    self.boxOfficeStacksLoaded = 1;
     self.searchBarIsOpen = NO;
     self.localResults = [NSMutableArray array];
     self.onlineResults = [NSMutableArray array];
@@ -58,7 +60,7 @@ typedef enum ScrollViewDirection{
     [self.searchResultsView registerNib:[UINib nibWithNibName:@"Cell" bundle:nil] forCellReuseIdentifier:@"cellID"];
     [self loadStack:1 forOption:0];
     [self loadStack:1 forOption:1];
-        [self loadStack:1 forOption:2];
+    [self loadStack:1 forOption:2];
     UIImage *playingNowImage = [UIImage imageNamed:@"playing_now.png"];
     NSDictionary *playingNowDict = @{@"action":@"Playing Now.",@"image":playingNowImage};
     UIImage *boxOfficeImg = [UIImage imageNamed:@"box_office.png"];
@@ -88,7 +90,8 @@ typedef enum ScrollViewDirection{
             return self.playingNowStacksLoaded;
         case 1:
             return self.comingUpStacksLoaded;
-            
+        case 2:
+            return self.boxOfficeStacksLoaded;
     }
     return 0;
 }
@@ -308,6 +311,8 @@ typedef enum ScrollViewDirection{
                     self.playingNowStacksLoaded++;
                 case 1:
                     self.comingUpStacksLoaded++;
+                case 2:
+                    self.boxOfficeStacksLoaded++;
             }
             [self loadStack:[self getStacksLoaded] forOption:self.sideMenu.selectedIndex];
         }
@@ -350,8 +355,8 @@ typedef enum ScrollViewDirection{
     NSString *searchString = self.navbar.searchBar.text;
     if (![searchString isEqualToString:@""]) {
         [self.searchTimer invalidate];
-//        NSLog(@"Searching with keyword: %@", searchString);
-//        NSLog(@"LOCAL: ");
+        //        NSLog(@"Searching with keyword: %@", searchString);
+        //        NSLog(@"LOCAL: ");
         //        dispatch_async(self.queue, ^{
         NSMutableArray *localResults = [MovieProcessor searchMovieByNameLocally:searchString];
         if ([localResults count] > 0) {
@@ -385,6 +390,17 @@ typedef enum ScrollViewDirection{
     NSLog(@"Need to reload table with option #%ld", self.sideMenu.selectedIndex);
     self.arrayToBeDisplayed = [[SessionVars sharedInstance]getMovieArray:self.sideMenu.selectedIndex];
     [self.tableView reloadData];
+//    switch (self.sideMenu.selectedIndex) {
+//        case 0:
+//            self.navbar.title = @"Moovies - Now Playing.";
+//            break;
+//        case 1:
+//            self.navbar.title = @"Moovies - Coming Up.";
+//            break;
+//        default:
+//            self.navbar.title = @"Moovies - Box Office.";
+//            break;
+//    }
 }
 
 
