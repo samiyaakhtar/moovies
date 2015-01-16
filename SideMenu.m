@@ -39,6 +39,10 @@
     NSDictionary *actionDict = [self.actions objectAtIndex:indexPath.row];
     cell.action.text = [actionDict objectForKey:@"action"];
     cell.imageView.image = [actionDict objectForKey:@"image"];
+    cell.imageView.transform = CGAffineTransformMakeScale(0.5, 0.5);
+    UIView *selectionView = [[UIView alloc]init];
+    selectionView.backgroundColor = [UIColor redColor];
+    cell.selectedBackgroundView = selectionView;
     return cell;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

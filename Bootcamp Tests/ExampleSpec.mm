@@ -1,5 +1,5 @@
 #import <XCTest/XCTest.h>
-      #import <Cedar-iOS/Cedar-iOS.h>
+#import <Cedar-iOS/Cedar-iOS.h>
 #import "MovieProcessor.h"
 #import "Movie.h"
 
@@ -9,7 +9,7 @@ using namespace Cedar::Doubles;
 SPEC_BEGIN(ExampleSpec)
 
 /* This is not an exhaustive list of usages.
-   For more information, please visit https://github.com/pivotal/cedar */
+ For more information, please visit https://github.com/pivotal/cedar */
 
 describe(@"Specs on Bootcamp", ^{
     

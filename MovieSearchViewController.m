@@ -85,15 +85,15 @@
         [self.searchTimer invalidate];
         NSLog(@"Searching with keyword: %@", searchString);
         NSLog(@"LOCAL: ");
-        dispatch_async(self.queue, ^{
+//        dispatch_async(self.queue, ^{
             NSMutableArray *localResults = [MovieProcessor searchMovieByNameLocally:searchString];
             if ([localResults count] > 0) {
                 [self.localResults addObjectsFromArray:localResults];
                 self.localResults = localResults;
                 NSLog(@"search results count: %lu",(unsigned long)[self.localResults count]);
-                dispatch_async(dispatch_get_main_queue(), ^{
+//                dispatch_async(dispatch_get_main_queue(), ^{
                     [self.searchResultsView reloadData];
-                });
+//                });
                 
             }
             
@@ -102,12 +102,12 @@
                     Movie *movie = [[Movie alloc]initWithDictionary:movieDict];
                     [self.onlineResults addObject:movie];
                 }
-                dispatch_async(dispatch_get_main_queue(), ^{
+//                dispatch_async(dispatch_get_main_queue(), ^{
                     [self.searchResultsView reloadData];
-                });
+//                });
                 
             }];
-        });
+//        });
     }
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{

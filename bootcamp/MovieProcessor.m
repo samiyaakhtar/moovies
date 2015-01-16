@@ -12,6 +12,7 @@
 #import <CoreData/CoreData.h>
 @implementation MovieProcessor
 +(void)saveMovie:(Movie *)movieToBeSaved{
+    
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSManagedObject *movieToBeAdded;
@@ -34,7 +35,9 @@
     //    NSLog(@"Synopsis: %@", newMovie.synopsis);
     NSError *error;
     [context save:&error];
-
+    
+    
+    
 }
 
 + (BOOL)checkIfMovieExistsByID:(NSString *)ID{
@@ -53,12 +56,12 @@
         NSLog(@"No matches");
         return NO;
     }
-    
     return YES;
-    
 }
 
 + (Movie *)getMovieByID:(NSString *)ID{
+    Movie *movie = nil;
+    
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:context];
@@ -72,7 +75,6 @@
     if ([fetchedObjs count] == 0)
     {
         NSLog(@"No matches");
-        return nil;
     }
     else{
         NSLog(@"Found movie");
@@ -80,15 +82,17 @@
         NSArray* fetchedObjKeys = @[@"year",@"title",@"thumbnail_link",@"thumbnail_img",@"theater_release_date",@"synopsis",@"runtime",@"rating",@"id",@"dvd_release_date",@"critics_score",@"audience_score"];
         NSDictionary *dict = [matchedObj committedValuesForKeys:fetchedObjKeys];
         NSLog(@"Synopsis:::::::::::\n%@",[dict objectForKey:@"synopsis"]);
-        Movie *movie = [[Movie alloc]initWithDictionary:dict];
-        return movie;
+        movie = [[Movie alloc]initWithDictionary:dict];
+        
     }
     
-    
+    return movie;
 }
 
 
 +(NSMutableArray *)searchMovieByNameLocally:(NSString *)keyword{
+    NSMutableArray *moviesArray = nil;
+    
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:context];
@@ -103,12 +107,12 @@
     if ([fetchedObjs count] == 0)
     {
         NSLog(@"No matches");
-        return nil;
     }
     else
     {
+        moviesArray = [NSMutableArray array];
         NSMutableArray *moviesArray = [NSMutableArray array];
-//        NSLog(@"Found %d entries", [fetchedObjs count]);
+        //        NSLog(@"Found %d entries", [fetchedObjs count]);
         for (int i = 0; i < [fetchedObjs count]; i++) {
             matchedObj = [fetchedObjs objectAtIndex:i];
             NSArray* fetchedObjKeys = @[@"year",@"title",@"thumbnail_link",@"thumbnail_img",@"theater_release_date",@"synopsis",@"runtime",@"rating",@"id",@"dvd_release_date",@"critics_score",@"audience_score"];
@@ -118,9 +122,10 @@
             Movie *movie = [[Movie alloc]initWithCustomDict:dict];
             [moviesArray addObject:movie];
         }
-        return moviesArray;
+        
     }
     
+    return moviesArray;
 }
 
 + (void)getMovieDataWithCurrentStackNumber:(int)stackNum andCompletionHandler:(void (^)(NSArray *))completionBlock{

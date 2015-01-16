@@ -12,6 +12,11 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *synopsisHeightConstraint;
 
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *synopsisWidthConstraint;
+
+
+
 @property (nonatomic, strong) Movie *movie;
 
 
@@ -31,7 +36,9 @@
     self.synopsis_label.lineBreakMode = NSLineBreakByWordWrapping;
     self.cast_label.lineBreakMode = NSLineBreakByWordWrapping;
     self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
     [self populateDetails];
+    
     // Do any additional setup after loading the view.
     
 }
@@ -46,6 +53,14 @@
     self.mpaa_label.text = self.movie.rating;
     self.synopsis_label.text = self.movie.synopsis;
     self.synopsisHeightConstraint.constant = [self heightForSynopsis:self.movie.synopsis];
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        self.synopsisWidthConstraint.constant = self.view.frame.size.width - 40;
+    }
+    else{
+        self.synopsisWidthConstraint.constant = self.view.frame.size.width - 20;
+    }
+    
     self.img_view.image = self.movie.thumbnail;
     //Get casts
 }
@@ -53,10 +68,16 @@
 - (CGFloat)heightForSynopsis:(NSString *)synopsis {
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:19.0f]};
     
-    CGRect boundingRect = [synopsis boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.synopsis_label.frame), 4000)
+    CGRect boundingRect = [synopsis boundingRectWithSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 4000)
                                                  options:NSStringDrawingUsesLineFragmentOrigin
                                               attributes:attributes
                                                  context:nil];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+        boundingRect.size.height -= 40;
+    }
+    else{
+//        boundingRect.size.height -= 100;
+    }
     
     return boundingRect.size.height;
 }

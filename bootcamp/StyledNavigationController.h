@@ -10,9 +10,8 @@
 @end
 #import <UIKit/UIKit.h>
 #import "SideMenu.h"
-@interface StyledNavigationController : UINavigationController
+@interface StyledNavigationController : UINavigationController<UISearchBarDelegate>
 @property(weak, nonatomic) id delegate;
-- (void)addImgToNavBar:(UIImage *)image;
+- (void)addImg;
 - (void)removeImg;
-- (void)openSideMenu:(SideMenu *)sideMenu;
 @end

@@ -18,6 +18,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.extraImgView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 10, 20, 20)];
+    UIImage *burger = [UIImage imageNamed:@"burger_icon.png"];
+    self.extraImgView.image = burger;
     self.extraImgView.backgroundColor = [UIColor clearColor];
     self.extraImgView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hamburgerTapped:)];
@@ -35,14 +37,11 @@
     NSLog(@"Hamburger Tapped!");
     [self.delegate hamburgerClicked];
 }
-- (void)addImgToNavBar:(UIImage *)image{
-    [self.extraImgView setImage:image];
+- (void)addImg{
     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.extraImgView.alpha = 1;
     } completion:^(BOOL finished) {
     }];
-    
-    NSLog(@"Added extra img");
 }
 
 - (void)removeImg{

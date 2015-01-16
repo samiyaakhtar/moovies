@@ -16,7 +16,6 @@
 #import "StyledNavigationController.h"
 @interface ViewController ()
 @property (strong, nonatomic) NSArray *moviesArray;
-@property(strong, nonatomic) dispatch_queue_t sessionQueue;
 @property (nonatomic, assign) CGFloat lastSVContentOffset;
 @property (nonatomic) NSInteger selectedMovieNum;
 @property (nonatomic) int stacksLoaded;
@@ -42,7 +41,7 @@ typedef enum ScrollViewDirection{
     self.stacksLoaded = 1;
     [self.view bringSubviewToFront:self.spinner];
     [self.spinner startAnimating];
-    self.sessionQueue = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL);
+
     [self loadStack:self.stacksLoaded];
     UIImage *playingNowImage = [UIImage imageNamed:@"playing_now.png"];
     NSDictionary *playingNowDict = @{@"action":@"Playing Now.",@"image":playingNowImage};
@@ -51,10 +50,10 @@ typedef enum ScrollViewDirection{
     UIImage *comingUpImg = [UIImage imageNamed:@"coming_up.png"];
     NSDictionary *comingUpDict = @{@"action":@"Coming Up.",@"image":comingUpImg};
     NSArray *actionDicts = @[playingNowDict, comingUpDict, boxOfficeDict];
-    self.sideMenu = [[SideMenu alloc]initWithFrame:CGRectMake(-self.view.frame.size.width * 0.6, 60, self.view.frame.size.width * 0.6, self.view.frame.size.height - 30) andArrayOfDicts:actionDicts];
+    self.sideMenu = [[SideMenu alloc]initWithFrame:CGRectMake(-225, 60, 225, self.view.frame.size.height - 30) andArrayOfDicts:actionDicts];
     //    self.sideMenu.delegate = self;
     [self.view addSubview: self.sideMenu];
-    self.transparentView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width * 0.6, 60, self.view.frame.size.width * 0.4, self.view.frame.size.height - 30)];
+    self.transparentView = [[UIView alloc]initWithFrame:CGRectMake(225, 60, self.view.frame.size.width * 0.4, self.view.frame.size.height - 30)];
     self.transparentView.backgroundColor = [UIColor clearColor];
     self.transparentView.userInteractionEnabled = NO;
     UITapGestureRecognizer *closeMenuTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toggleSideMenu)];
@@ -63,7 +62,7 @@ typedef enum ScrollViewDirection{
 }
 //- (void)viewDidAppear:(BOOL)animated{
 //    [super viewDidAppear:animated];
-//    self.sideMenu.frame = CGRectMake(0 ,30, self.view.frame.size.width * 0.6, self.view.frame.size.height - 30);
+//    self.sideMenu.frame = CGRectMake(0 ,30, 225, self.view.frame.size.height - 30);
 ////                self.sideMenu.transform = CGAffineTransformMakeTranslation(self.sideMenu.frame.size.width, 0);
 //}
 - (void)toggleSideMenu{
@@ -85,8 +84,6 @@ typedef enum ScrollViewDirection{
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     self.tableView.transform = CGAffineTransformMakeTranslation(self.sideMenu.frame.size.width, 0);
                             self.sideMenu.transform = CGAffineTransformMakeTranslation(self.sideMenu.frame.size.width, 0);
-//        self.sideMenu.frame = CGRectMake(0, self.sideMenu.frame.origin.y, self.sideMenu.frame.size.width, self.sideMenu.frame.size.height);
-//        self.tableView.frame = CGRectMake(self.sideMenu.frame.size.width, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
     } completion:^(BOOL finished) {
         self.sideMenuIsOpen = YES;
         self.transparentView.userInteractionEnabled = YES;
@@ -95,12 +92,9 @@ typedef enum ScrollViewDirection{
 }
 
 - (void)closeMenu{
-    
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.tableView.transform = CGAffineTransformIdentity;
                 self.sideMenu.transform = CGAffineTransformIdentity;
-//        self.sideMenu.frame = CGRectMake(-self.sideMenu.frame.size.width, self.sideMenu.frame.origin.y, self.sideMenu.frame.size.width, self.sideMenu.frame.size.height);
-//        self.tableView.frame = CGRectMake(0, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
     } completion:^(BOOL finished) {
         self.sideMenuIsOpen = NO;
         self.transparentView.userInteractionEnabled = NO;
@@ -110,9 +104,9 @@ typedef enum ScrollViewDirection{
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    UIImage *burger = [UIImage imageNamed:@"burger_icon.png"];
+        NSLog(@"View will appear");
     StyledNavigationController *navbar = (StyledNavigationController *)self.navigationController;
-    [navbar addImgToNavBar:burger];
+    [navbar addImg];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -122,16 +116,13 @@ typedef enum ScrollViewDirection{
 }
 
 - (void)loadStack:(int)number{
-    dispatch_async(self.sessionQueue, ^{
+
         SessionVars *sessionVars = [SessionVars sharedInstance];
         [MovieProcessor getMovieDataWithCurrentStackNumber:number + 1 andCompletionHandler:^(NSArray *movieDicts) {
             for (NSDictionary *movieDict in movieDicts) {
-                //                NSLog(@"%@",movieDict.description);
                 Movie *movie = [[Movie alloc]initWithDictionary:movieDict];
                 [sessionVars addMovieToArray:movie];
             }
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
                 [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                     self.spinner.alpha = 0;
                 } completion:^(BOOL finished) {
@@ -140,12 +131,15 @@ typedef enum ScrollViewDirection{
                     [self.tableView reloadData];
                     NSLog(@"SV content size updated: (%f, %f)", self.tableView.contentSize.width,self.tableView.contentSize.height);
                 }];
-                
-            });
         }];
         
-    });
+
     
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    NSLog(@"View did appear");
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

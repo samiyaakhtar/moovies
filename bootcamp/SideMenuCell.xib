@@ -13,8 +13,8 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="igr-Dh-MrX" id="8gW-JC-WEP">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvh-MK-bqt">
-                        <rect key="frame" x="71" y="5" width="241" height="40"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvh-MK-bqt">
+                        <rect key="frame" x="61" y="4" width="251" height="41"/>
                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="30"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -22,16 +22,15 @@
                 </subviews>
                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="rvh-MK-bqt" firstAttribute="trailing" secondItem="8gW-JC-WEP" secondAttribute="trailingMargin" id="3Xn-Z6-fIE"/>
-                    <constraint firstItem="rvh-MK-bqt" firstAttribute="leading" secondItem="8gW-JC-WEP" secondAttribute="leadingMargin" constant="63" id="5lQ-Ie-dJw"/>
-                    <constraint firstItem="rvh-MK-bqt" firstAttribute="top" secondItem="8gW-JC-WEP" secondAttribute="topMargin" constant="-4" id="DBS-Xu-4ab"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="rvh-MK-bqt" secondAttribute="bottom" constant="-3" id="mmc-ne-My0"/>
+                    <constraint firstItem="rvh-MK-bqt" firstAttribute="centerY" secondItem="8gW-JC-WEP" secondAttribute="centerY" id="E4g-Oa-CpC"/>
+                    <constraint firstItem="rvh-MK-bqt" firstAttribute="trailing" secondItem="8gW-JC-WEP" secondAttribute="trailingMargin" id="Rvh-dJ-IJt"/>
+                    <constraint firstItem="rvh-MK-bqt" firstAttribute="leading" secondItem="8gW-JC-WEP" secondAttribute="leadingMargin" constant="53" id="acT-fI-r2L"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="action" destination="rvh-MK-bqt" id="jIe-Xq-Xjf"/>
             </connections>
-            <point key="canvasLocation" x="485" y="420"/>
+            <point key="canvasLocation" x="475" y="419.5"/>
         </tableViewCell>
     </objects>
 </document>
